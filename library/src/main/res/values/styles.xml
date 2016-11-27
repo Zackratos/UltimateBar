@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="UltimateBaseTheme" parent="Theme.AppCompat.Light.NoActionBar"/>
+
+    <style name="UltimateBaseTheme.None"/>
+
+    <style name="UltimateBaseTheme.ColorBar"/>
+
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="UltimateBaseTheme.ColorBar">
+        <item name="colorPrimary">@color/DeepSkyBlue</item>
+        <item name="colorPrimaryDark">@color/DeepSkyBlue</item>
+        <item name="colorAccent">@color/DeepSkyBlue</item>
+        <item name="android:navigationBarColor">@color/DeepSkyBlue</item>
+    </style>
+
+
+</resources>

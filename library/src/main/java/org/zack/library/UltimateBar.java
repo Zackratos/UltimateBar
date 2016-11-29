@@ -51,6 +51,7 @@ public class UltimateBar {
             ViewGroup decorView = (ViewGroup) window.getDecorView();
             decorView.addView(createStatusBarView(alphaColor));
             decorView.addView(createNavBarView(alphaColor));
+            setRootView();
 //            int count = decorView.getChildCount();
 /*            if (count > 0 && decorView.getChildAt(count - 1) instanceof StatusBarView) {
                 decorView.getChildAt(count - 1).setBackgroundColor(alphaColor);
@@ -65,9 +66,9 @@ public class UltimateBar {
                 decorView.addView(nagivationView);
             }*/
 //            setRootView(alphaColor);
-            ViewGroup rootView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
-            rootView.setFitsSystemWindows(true);
-            rootView.setClipToPadding(true);
+//            ViewGroup rootView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
+//            rootView.setFitsSystemWindows(true);
+//            rootView.setClipToPadding(true);
 //            rootView.setBackgroundColor(alphaColor);
         }
     }
@@ -175,61 +176,13 @@ public class UltimateBar {
 
 
 
-    /**
-     * 生成一个和状态栏大小相同的半透明矩形条
-     *
-     * @param activity 需要设置的activity
-     * @param color    状态栏颜色值
-     * @param alpha    透明值
-     * @return 状态栏矩形条
-     */
-    private StatusBarView createStatusBarView(@ColorInt int color, int alpha, int height) {
-        // 绘制一个和状态栏一样高的矩形
-        StatusBarView statusBarView = new StatusBarView(activity);
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-        statusBarView.setLayoutParams(params);
-        statusBarView.setBackgroundColor(calculateStatusColor(color, alpha));
-        return statusBarView;
-    }
 
 
-    /**
-     * 创建半透明矩形 View
-     *
-     * @param alpha 透明值
-     * @return 半透明 View
-     */
-    private StatusBarView createTranslucentStatusBarView(int alpha) {
-        // 绘制一个和状态栏一样高的矩形
-        StatusBarView statusBarView = new StatusBarView(activity);
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight());
-        statusBarView.setLayoutParams(params);
-        statusBarView.setBackgroundColor(Color.argb(alpha, 0, 0, 0));
-        return statusBarView;
-    }
 
 
-/*    private StatusBarView createNavigationBarView(@ColorInt int color, int alpha) {
-        StatusBarView statusBarView = new StatusBarView(activity);
-        LinearLayout.LayoutParams params =
-                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getNavigationBarHeight());
-        statusBarView.setLayoutParams(params);
-        statusBarView.setBackgroundColor(calculateStatusColor(color, alpha));
-        return statusBarView;
-    }*/
 
 
-    /**
-     * 设置根布局参数
-     */
-    private void setRootView(int color) {
-        ViewGroup rootView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
-        rootView.setFitsSystemWindows(true);
-        rootView.setClipToPadding(true);
-//        rootView.setBackgroundColor(color);
-    }
+
 
 
     /**
@@ -283,20 +236,7 @@ public class UltimateBar {
     }
 
 
-    /**
-     * 添加半透明矩形条
-     *
-     * @param activity       需要设置的 activity
-     * @param statusBarAlpha 透明值
-     */
-    private void addTranslucentView(int statusBarAlpha) {
-        ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
-        if (contentView.getChildCount() > 1) {
-            contentView.getChildAt(1).setBackgroundColor(Color.argb(statusBarAlpha, 0, 0, 0));
-        } else {
-            contentView.addView(createTranslucentStatusBarView(statusBarAlpha));
-        }
-    }
+
 
 
 

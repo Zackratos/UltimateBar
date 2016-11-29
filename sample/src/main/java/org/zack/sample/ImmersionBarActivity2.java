@@ -1,6 +1,7 @@
 package org.zack.sample;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.view.View;
 import org.zack.library.UltimateBar;
 import org.zack.library.UltimateBarActivity;
 
-public class ImmersionBarActivity extends UltimateBarActivity {
+public class ImmersionBarActivity2 extends UltimateBarActivity {
 
     private View toolbar;
     @Override
@@ -26,6 +27,6 @@ public class ImmersionBarActivity extends UltimateBarActivity {
     protected void initBar() {
         super.initBar();
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setImmersionBar();
+        ultimateBar.setImmersionBar(Color.BLUE, 50);
     }
 }

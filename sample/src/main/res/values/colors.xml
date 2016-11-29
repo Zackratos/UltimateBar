@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="DeepSkyBlue">#00BFFF</color>
+    <color name="DoderBlue">#1E90FF</color>
 </resources>

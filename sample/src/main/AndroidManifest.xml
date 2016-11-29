@@ -15,9 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ColorBarActivity" />
-        <activity android:name=".ImmersionBarActivity" />
-        <activity android:name=".HintBarActivity"></activity>
+        <activity
+            android:name=".ColorBarActivity"
+            android:label="ColorBar" />
+        <activity android:name=".ImmersionBarActivity2" />
+        <activity android:name=".HintBarActivity1" />
+        <activity android:name=".ImmersionBarActivity1" />
+        <activity android:name=".HintBarActivity2"></activity>
     </application>
 
 </manifest>

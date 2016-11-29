@@ -1,12 +1,11 @@
 package org.zack.library;
 
 
-
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 /**
  * Created by Administrator on 2016/10/15.
@@ -42,13 +40,18 @@ public class UltimateBar {
             int alphaColor = calculateStatusColor(color, alpha);
             window.setStatusBarColor(alphaColor);
             window.setNavigationBarColor(alphaColor);
+//            ViewGroup decorView = (ViewGroup) window.getDecorView();
+//            decorView.addView(createStatusBarView(alphaColor));
+//            setupStatusBarView(activity, decorView, color);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             int alphaColor = calculateStatusColor(color, alpha);
             ViewGroup decorView = (ViewGroup) window.getDecorView();
-            int count = decorView.getChildCount();
+            decorView.addView(createStatusBarView(alphaColor));
+            decorView.addView(createNavBarView(alphaColor));
+//            int count = decorView.getChildCount();
 /*            if (count > 0 && decorView.getChildAt(count - 1) instanceof StatusBarView) {
                 decorView.getChildAt(count - 1).setBackgroundColor(alphaColor);
             } else {
@@ -65,8 +68,13 @@ public class UltimateBar {
             ViewGroup rootView = (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
             rootView.setFitsSystemWindows(true);
             rootView.setClipToPadding(true);
-            rootView.setBackgroundColor(alphaColor);
+//            rootView.setBackgroundColor(alphaColor);
         }
+    }
+
+
+    public void setImmersionBar() {
+        setImmersionBar(Color.TRANSPARENT, 0);
     }
 
 
@@ -78,12 +86,18 @@ public class UltimateBar {
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
-            window.setNavigationBarColor(Color.TRANSPARENT);
-            window.setStatusBarColor(Color.TRANSPARENT);
+//            int alphaColor = calculateStatusColor(color, alpha);
+            int alphaColor = Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+            window.setNavigationBarColor(alphaColor);
+            window.setStatusBarColor(alphaColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            ViewGroup decorView = (ViewGroup) window.getDecorView();
+            int alphaColor = Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+            decorView.addView(createStatusBarView(alphaColor));
+            decorView.addView(createNavBarView(alphaColor));
         }
 //        setRootView(color);
     }
@@ -92,13 +106,53 @@ public class UltimateBar {
 
     }
 
-    public boolean hintBar() {
-
-        return false;
+    public void hintBar() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            View decorView = activity.getWindow().getDecorView();
+            decorView.setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                            | View.SYSTEM_UI_FLAG_FULLSCREEN
+                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
     }
 
 
 
+    private View createStatusBarView(int color) {
+        View mStatusBarTintView = new View(activity);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, getStatusBarHeight());
+        params.gravity = Gravity.TOP;
+        mStatusBarTintView.setLayoutParams(params);
+        mStatusBarTintView.setBackgroundColor(color);
+        return mStatusBarTintView;
+    }
+
+    private View createNavBarView(int color) {
+        View mNavBarTintView = new View(activity);
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, getNavigationHeight());
+        params.gravity = Gravity.BOTTOM;
+        mNavBarTintView.setLayoutParams(params);
+        mNavBarTintView.setBackgroundColor(color);
+        return mNavBarTintView;
+    }
+
+
+    /**
+     * 设置根布局参数
+     */
+    private void setRootView() {
+        ViewGroup parent = (ViewGroup) activity.findViewById(android.R.id.content);
+        for (int i = 0, count = parent.getChildCount(); i < count; i++) {
+            View childView = parent.getChildAt(i);
+            if (childView instanceof ViewGroup) {
+                childView.setFitsSystemWindows(true);
+                ((ViewGroup)childView).setClipToPadding(true);
+            }
+        }
+    }
 
     /**
      * 计算状态栏颜色
@@ -117,6 +171,7 @@ public class UltimateBar {
         blue = (int) (blue * a + 0.5);
         return 0xff << 24 | red << 16 | green << 8 | blue;
     }
+
 
 
 

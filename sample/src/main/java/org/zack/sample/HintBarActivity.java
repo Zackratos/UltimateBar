@@ -5,7 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class HintBarActivity extends AppCompatActivity {
+import org.zack.library.UltimateBar;
+import org.zack.library.UltimateBarActivity;
+
+public class HintBarActivity extends UltimateBarActivity {
 
     private View toolbar;
 
@@ -18,7 +21,7 @@ public class HintBarActivity extends AppCompatActivity {
         toolbar.setVisibility(View.GONE);
     }
 
-    @Override
+/*    @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus && Build.VERSION.SDK_INT >= 19) {
@@ -31,5 +34,11 @@ public class HintBarActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }*/
+
+    @Override
+    protected void hintBar() {
+        UltimateBar ub = new UltimateBar(this);
+        ub.hintBar();
     }
 }

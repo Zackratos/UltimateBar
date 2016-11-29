@@ -26,6 +26,6 @@ public class ImmersionBarActivity extends UltimateBarActivity {
     protected void initBar() {
         super.initBar();
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setImmersionBar(ContextCompat.getColor(this, R.color.DeepSkyBlue), 0);
+        ultimateBar.setImmersionBar();
     }
 }

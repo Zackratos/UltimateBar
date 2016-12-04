@@ -16,6 +16,3 @@ Transparent statusbar and navigationbar
   <img src="Screenshots/KITKAT_1.png" width="200px"/>
   <img src="Screenshots/LOLLIPOP_1.png" width="200px"/>
   <img src="Screenshots/KITKAT_2.png" width="200px"/>
-  <img src="Screenshots/LOLLIPOP_2.png" width="200px"/>
-  <img src="Screenshots/KITKAT_3.png" width="200px"/>
-  <img src="Screenshots/LOLLIPOP_3.png" width="200px"/>

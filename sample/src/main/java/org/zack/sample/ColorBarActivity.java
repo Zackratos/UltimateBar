@@ -20,7 +20,7 @@ public class ColorBarActivity extends UltimateBarActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setBackgroundColor(Color.GREEN);
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.SpringGreen));
 
     }
 
@@ -28,6 +28,6 @@ public class ColorBarActivity extends UltimateBarActivity {
     @Override
     protected void initBar() {
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setColorBar(Color.GREEN, 100);
+        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
     }
 }

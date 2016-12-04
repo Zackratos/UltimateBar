@@ -13,7 +13,8 @@ import org.zack.library.UltimateBarActivity;
 public class MainActivity extends UltimateBarActivity implements View.OnClickListener {
 
 
-    private Button colorBar, immersionBar1, immersionBar2, hintBar1, hintBar2;
+    private Button colorBar, immersionBar1, immersionBar2,
+            immersionBar3, hintBar1, hintBar2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,12 +28,14 @@ public class MainActivity extends UltimateBarActivity implements View.OnClickLis
         colorBar = (Button) findViewById(R.id.color_bar);
         immersionBar1 = (Button) findViewById(R.id.immersion_bar_1);
         immersionBar2 = (Button) findViewById(R.id.immersion_bar_2);
+        immersionBar3 = (Button) findViewById(R.id.immersion_bar_3);
         hintBar1 = (Button) findViewById(R.id.hint_bar_1);
         hintBar2 = (Button) findViewById(R.id.hint_bar_2);
 
         colorBar.setOnClickListener(this);
         immersionBar1.setOnClickListener(this);
         immersionBar2.setOnClickListener(this);
+        immersionBar3.setOnClickListener(this);
         hintBar1.setOnClickListener(this);
         hintBar2.setOnClickListener(this);
     }
@@ -46,6 +49,10 @@ public class MainActivity extends UltimateBarActivity implements View.OnClickLis
 
             case R.id.immersion_bar_1:
                 startActivity(new Intent(this, ImmersionBarActivity1.class));
+                break;
+
+            case R.id.immersion_bar_3:
+                startActivity(new Intent(this, ImmersionBarActivity3.class));
                 break;
 
             case R.id.immersion_bar_2:

@@ -8,6 +8,6 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/girl"
+        android:src="@drawable/yurisa_1"
         android:scaleType="fitXY"/>
 </RelativeLayout>

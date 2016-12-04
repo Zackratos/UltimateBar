@@ -21,7 +21,8 @@
         <activity android:name=".ImmersionBarActivity2" />
         <activity android:name=".HintBarActivity1" />
         <activity android:name=".ImmersionBarActivity1" />
-        <activity android:name=".HintBarActivity2"></activity>
+        <activity android:name=".HintBarActivity2" />
+        <activity android:name=".ImmersionBarActivity3"></activity>
     </application>
 
 </manifest>

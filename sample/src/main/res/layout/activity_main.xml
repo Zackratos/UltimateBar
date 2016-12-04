@@ -31,6 +31,12 @@
             android:text="Immersion_Bar_2"/>
 
         <Button
+            android:id="@+id/immersion_bar_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Immersion_Bar_3"/>
+
+        <Button
             android:id="@+id/hint_bar_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

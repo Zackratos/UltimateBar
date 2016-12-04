@@ -11,3 +11,15 @@ Transparent statusbar and navigationbar
 
 ###截图：
 
+  <img src="screenshots/KITKAT_0.png" width="200px"/>
+  <img src="screenshots/LOLLIPOP_0.png" width="200px"/>
+  <img src="screenshots/KITKAT_1.png" width="200px"/>
+  <img src="screenshots/LOLLIPOP_1.png" width="200px"/>
+  <img src="screenshots/KITKAT_2.png" width="200px"/>
+  <img src="screenshots/LOLLIPOP_2.png" width="200px"/>
+  <img src="screenshots/KITKAT_3.png" width="200px"/>
+  <img src="screenshots/LOLLIPOP_3.png" width="200px"/>
+  <img src="screenshots/KITKAT_4.png" width="200px"/>
+  <img src="screenshots/LOLLIPOP_4.png" width="200px"/>
+  <img src="screenshots/LOLLIPOP_5.png" width="200px"/>
+  <img src="screenshots/LOLLIPOP_6.png" width="200px"/>

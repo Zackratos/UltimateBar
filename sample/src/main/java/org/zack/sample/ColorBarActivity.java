@@ -1,5 +1,6 @@
 package org.zack.sample;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
@@ -19,7 +20,7 @@ public class ColorBarActivity extends UltimateBarActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+        toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.SpringGreen));
 
     }
 
@@ -27,6 +28,6 @@ public class ColorBarActivity extends UltimateBarActivity {
     @Override
     protected void initBar() {
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
     }
 }

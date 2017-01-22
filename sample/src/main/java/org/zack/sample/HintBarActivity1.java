@@ -8,7 +8,7 @@ import android.view.View;
 import org.zack.library.UltimateBar;
 import org.zack.library.UltimateBarActivity;
 
-public class HintBarActivity extends UltimateBarActivity {
+public class HintBarActivity1 extends UltimateBarActivity {
 
     private View toolbar;
 

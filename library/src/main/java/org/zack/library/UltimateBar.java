@@ -236,8 +236,4 @@ public class UltimateBar {
     }
 
 
-
-
-
-
 }

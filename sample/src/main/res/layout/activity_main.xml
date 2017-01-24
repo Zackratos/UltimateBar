@@ -20,21 +20,21 @@
             android:layout_height="wrap_content"
             android:text="Color_Bar"/>
         <Button
-            android:id="@+id/immersion_bar_1"
+            android:id="@+id/immersion_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Immersion_Bar_1"/>
+            android:text="Immersion_Bar"/>
         <Button
-            android:id="@+id/immersion_bar_2"
+            android:id="@+id/transparent_bar_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Immersion_Bar_2"/>
+            android:text="Transparent_Bar_1"/>
 
         <Button
-            android:id="@+id/immersion_bar_3"
+            android:id="@+id/transparent_bar_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Immersion_Bar_3"/>
+            android:text="Transparent_Bar_2"/>
 
         <Button
             android:id="@+id/hint_bar_1"

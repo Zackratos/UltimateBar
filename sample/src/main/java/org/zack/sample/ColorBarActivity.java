@@ -1,11 +1,9 @@
 package org.zack.sample;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 
-import org.zack.library.UltimateBar;
 import org.zack.library.UltimateBarActivity;
 
 public class ColorBarActivity extends UltimateBarActivity {
@@ -16,7 +14,7 @@ public class ColorBarActivity extends UltimateBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setTheme(R.style.UltimateBaseTheme_ColorBar);
-        setContentView(R.layout.activity_ultimate_bar);
+        setContentView(R.layout.activity_text);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -24,10 +22,16 @@ public class ColorBarActivity extends UltimateBarActivity {
 
     }
 
-
     @Override
+    protected void initBar() {
+        setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
+    }
+
+
+/*    @Override
     protected void initBar() {
         UltimateBar ultimateBar = new UltimateBar(this);
         ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
-    }
+    }*/
+
 }

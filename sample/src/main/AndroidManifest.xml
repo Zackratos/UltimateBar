@@ -18,11 +18,11 @@
         <activity
             android:name=".ColorBarActivity"
             android:label="ColorBar" />
-        <activity android:name=".ImmersionBarActivity2" />
+        <activity android:name=".TransparentBarActivity1" />
         <activity android:name=".HintBarActivity1" />
-        <activity android:name=".ImmersionBarActivity1" />
+        <activity android:name=".ImmersionBarActivity" />
         <activity android:name=".HintBarActivity2" />
-        <activity android:name=".ImmersionBarActivity3"></activity>
+        <activity android:name=".TransparentBarActivity2"></activity>
     </application>
 
 </manifest>

@@ -9,7 +9,14 @@ Transparent statusbar and navigationbar
 2.可以自定义状态栏和导航栏的颜色和透明度；<br/>
 3.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/>
 
-###截图：
+###使用方法：
+
+<figure>
+    <img src="Screenshots/KITKAT_0.png" width="200px"/>
+        <figcaption>
+            KITKAT
+        </figcaption>
+</figure>
 
 <img src="Screenshots/KITKAT_0.png" width="200px"/>
 <img src="Screenshots/LOLLIPOP_0.png" width="200px"/>

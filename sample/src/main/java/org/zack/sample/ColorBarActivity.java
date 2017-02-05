@@ -28,10 +28,4 @@ public class ColorBarActivity extends UltimateBarActivity {
     }
 
 
-/*    @Override
-    protected void initBar() {
-        UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
-    }*/
-
 }

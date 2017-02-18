@@ -44,23 +44,75 @@ Transparent statusbar and navigationbar
 <img src="Screenshots/KITKAT_1.png" width="400px"/>
 <img src="Screenshots/LOLLIPOP_1.png" width="400px"/>
 
-<code>
+```java
     @Override
     protected void initBar() {
         setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
     }
-</code>
+```
 
 <br/>
 <br/>
 <br/>
 <br/>
 
-<img src="Screenshots/KITKAT_2.png" width="200px"/>
-<img src="Screenshots/LOLLIPOP_2.png" width="200px"/>
-<img src="Screenshots/KITKAT_3.png" width="200px"/>
-<img src="Screenshots/LOLLIPOP_3.png" width="200px"/>
-<img src="Screenshots/KITKAT_4.png" width="200px"/>
-<img src="Screenshots/LOLLIPOP_4.png" width="200px"/>
-<img src="Screenshots/LOLLIPOP_5.png" width="200px"/>
-<img src="Screenshots/LOLLIPOP_6.png" width="200px"/>
+<img src="Screenshots/KITKAT_2.png" width="400px"/>
+<img src="Screenshots/LOLLIPOP_2.png" width="400px"/>
+
+```java
+    @Override
+    protected void initBar() {
+        setImmersionBar();
+    }
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<img src="Screenshots/KITKAT_3.png" width="400px"/>
+<img src="Screenshots/LOLLIPOP_3.png" width="400px"/>
+
+```java
+    @Override
+    protected void initBar() {
+        setTransparentBar(Color.BLUE, 50);
+    }
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<img src="Screenshots/KITKAT_4.png" width="400px"/>
+<img src="Screenshots/LOLLIPOP_4.png" width="400px"/>
+
+```java
+    @Override
+    protected void initBar() {
+        setTransparentBar(Color.GREEN, 50);
+    }
+```
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<img src="Screenshots/LOLLIPOP_5.png" width="400px"/>
+<img src="Screenshots/LOLLIPOP_6.png" width="400px"/>
+
+```java
+    @Override
+    protected void initBar() {
+        setHintBar();
+    }
+```
+
+<br/>
+<br/>
+<br/>
+<br/>

@@ -26,10 +26,21 @@ Transparent statusbar and navigationbar
 </figure>-->
 
 
-<img src="Screenshots/KITKAT_0.png" width="200px"/>
-<img src="Screenshots/LOLLIPOP_0.png" width="200px"/>
-<img src="Screenshots/KITKAT_1.png" width="200px"/>
-<img src="Screenshots/LOLLIPOP_1.png" width="200px"/>
+<img src="Screenshots/KITKAT_0.png" width="400px"/>
+<img src="Screenshots/LOLLIPOP_0.png" width="400px"/>
+
+<code>
+    setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+</code>
+
+<img src="Screenshots/KITKAT_1.png" width="400px"/>
+<img src="Screenshots/LOLLIPOP_1.png" width="400px"/>
+
+<code>
+    setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
+</code>
+
+
 <img src="Screenshots/KITKAT_2.png" width="200px"/>
 <img src="Screenshots/LOLLIPOP_2.png" width="200px"/>
 <img src="Screenshots/KITKAT_3.png" width="200px"/>

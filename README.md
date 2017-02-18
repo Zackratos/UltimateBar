@@ -25,6 +25,15 @@ Transparent statusbar and navigationbar
         </figcaption>
 </figure>-->
 
+<br/>
+<br/>
+
+
+让需要使用沉浸或透明状态栏的 Activity 继承自 UltimateBarActivity，然后重写 initBar() 方法
+
+<br/>
+<br/>
+
 
 <img src="Screenshots/KITKAT_0.png" width="400px"/>
 <img src="Screenshots/LOLLIPOP_0.png" width="400px"/>

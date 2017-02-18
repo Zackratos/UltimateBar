@@ -11,7 +11,7 @@ Transparent statusbar and navigationbar
 
 ###使用方法：
 
-<figure>
+<!--<figure>
     <img src="Screenshots/KITKAT_0.png" width="300px"/>
         <figcaption>
             KITKAT
@@ -23,7 +23,8 @@ Transparent statusbar and navigationbar
         <figcaption>
             LOLLIPOP
         </figcaption>
-</figure>
+</figure>-->
+
 
 <img src="Screenshots/KITKAT_0.png" width="200px"/>
 <img src="Screenshots/LOLLIPOP_0.png" width="200px"/>

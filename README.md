@@ -29,12 +29,12 @@ Transparent statusbar and navigationbar
 <img src="Screenshots/KITKAT_0.png" width="400px"/>
 <img src="Screenshots/LOLLIPOP_0.png" width="400px"/>
 
-<code>
+...
     @Override
     protected void initBar() {
         setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
     }
-</code>
+...
 
 <br/>
 <br/>

@@ -12,9 +12,16 @@ Transparent statusbar and navigationbar
 ###使用方法：
 
 <figure>
-    <img src="Screenshots/KITKAT_0.png" width="200px"/>
+    <img src="Screenshots/KITKAT_0.png" width="400px"/>
         <figcaption>
             KITKAT
+        </figcaption>
+</figure>
+
+<figure>
+    <img src="Screenshots/LOLLIPOP_0.png" width="400px"/>
+        <figcaption>
+            LOLLIPOP
         </figcaption>
 </figure>
 

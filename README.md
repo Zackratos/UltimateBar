@@ -33,7 +33,7 @@ Transparent statusbar and navigationbar
 compile 'org.zackratos:UltimateBar:1.0.0'
 ```
 
-<br/>
+<br/><br/>
 
 #### 1.自定义颜色的状态栏和导航栏
 
@@ -45,7 +45,6 @@ ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
 ```
 
 <br/><br/>
-
 <img src="Screenshots/KITKAT_0.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_0.png" width="300px"/>
 
@@ -76,7 +75,6 @@ ultimateBar.setTransparentBar(Color.BLUE, 50);
 ```
 
 <br/><br/>
-
 <img src="Screenshots/KITKAT_3.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_3.png" width="300px"/>
 <img src="Screenshots/KITKAT_4.png" width="300px"/>
@@ -95,7 +93,6 @@ ultimateBar.setImmersionBar();
 ```
 
 <br/><br/>
-
 <img src="Screenshots/KITKAT_2.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_2.png" width="300px"/>
 
@@ -120,19 +117,11 @@ public void onWindowFocusChanged(boolean hasFocus) {
 ```
 
 <br/><br/>
-
 <img src="Screenshots/LOLLIPOP_5.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_6.png" width="300px"/>
 
 
 <br/><br/><br/><br/>
-
-
-
-
-
-
-
 
 
 

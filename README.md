@@ -1,15 +1,17 @@
 # UltimateBar
 Transparent statusbar and navigationbar
 
-## v1.0
+## v1.0.0
 
-###特点：
+### 特点：<br/>
 
-1.三种样式，自定义颜色的状态栏和导航栏，沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/>
-2.可以自定义状态栏和导航栏的颜色和透明度；<br/>
-3.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/>
+1.三种样式，自定义颜色的状态栏和导航栏，沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/><br/>
+2.可以自定义状态栏和导航栏的颜色和透明度；<br/><br/>
+3.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/><br/>
 
-###使用方法：
+
+
+### 使用方法：
 
 <!--<figure>
     <img src="Screenshots/KITKAT_0.png" width="300px"/>
@@ -25,106 +27,114 @@ Transparent statusbar and navigationbar
         </figcaption>
 </figure>-->
 
-<br/>
-<br/>
+首先添加依赖：
 
-
-让需要使用沉浸或透明状态栏的 Activity 继承自 UltimateBarActivity，然后重写 initBar() 方法
-
-<br/>
-<br/>
-
-
-<img src="Screenshots/KITKAT_0.png" width="400px"/>
-<img src="Screenshots/LOLLIPOP_0.png" width="400px"/>
-
-```java
-    @Override
-    protected void initBar() {
-        setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
-    }
+```xml
+compile 'org.zackratos:UltimateBar:1.0.0'
 ```
 
 <br/>
-<br/>
-<br/>
-<br/>
 
-<img src="Screenshots/KITKAT_1.png" width="400px"/>
-<img src="Screenshots/LOLLIPOP_1.png" width="400px"/>
+#### 1.自定义颜色的状态栏和导航栏
+
+在 onCreate() 方法中：<br/><br/>
 
 ```java
-    @Override
-    protected void initBar() {
-        setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
-    }
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
 ```
 
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/>
 
-<img src="Screenshots/KITKAT_2.png" width="400px"/>
-<img src="Screenshots/LOLLIPOP_2.png" width="400px"/>
+<img src="Screenshots/KITKAT_0.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_0.png" width="300px"/>
+
+
+<br/><br/>
+
+如果需要设置不透明度：<br/><br/>
 
 ```java
-    @Override
-    protected void initBar() {
-        setImmersionBar();
-    }
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
 ```
 
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/>
+<img src="Screenshots/KITKAT_1.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_1.png" width="300px"/>
 
-<img src="Screenshots/KITKAT_3.png" width="400px"/>
-<img src="Screenshots/LOLLIPOP_3.png" width="400px"/>
+
+<br/><br/><br/><br/>
+
+#### 2.半透明状态栏和导航栏
+
+在 onCreate() 方法中：<br/><br/>
 
 ```java
-    @Override
-    protected void initBar() {
-        setTransparentBar(Color.BLUE, 50);
-    }
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setTransparentBar(Color.BLUE, 50);
 ```
 
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/>
+
+<img src="Screenshots/KITKAT_3.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_3.png" width="300px"/>
+<img src="Screenshots/KITKAT_4.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_4.png" width="300px"/>
 
 
-<img src="Screenshots/KITKAT_4.png" width="400px"/>
-<img src="Screenshots/LOLLIPOP_4.png" width="400px"/>
+<br/><br/><br/><br/>
+
+#### 3.沉浸式状态栏和导航栏：
+
+在 onCreate() 方法中：<br/><br/>
 
 ```java
-    @Override
-    protected void initBar() {
-        setTransparentBar(Color.GREEN, 50);
-    }
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setImmersionBar();
 ```
 
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/>
 
-<img src="Screenshots/LOLLIPOP_5.png" width="400px"/>
-<img src="Screenshots/LOLLIPOP_6.png" width="400px"/>
+<img src="Screenshots/KITKAT_2.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_2.png" width="300px"/>
+
+
+<br/><br/><br/><br/>
+
+
+
+#### 4.隐藏状态栏和导航栏：
+
+在 onWindowFocusChanged() 方法中：<br/><br/>
 
 ```java
-    @Override
-    protected void initBar() {
-        setHintBar();
+@Override
+public void onWindowFocusChanged(boolean hasFocus) {
+    super.onWindowFocusChanged(hasFocus);
+    if (hasFocus) {
+        UltimateBar ultimateBar = new UltimateBar(this);
+        ultimateBar.setHintBar();
     }
+}
 ```
 
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/>
+
+<img src="Screenshots/LOLLIPOP_5.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_6.png" width="300px"/>
+
+
+<br/><br/><br/><br/>
+
+
+
+
+
+
+
+
+
 
 
 

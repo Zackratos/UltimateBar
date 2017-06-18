@@ -1,11 +1,12 @@
 package org.zack.sample;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import org.zack.library.UltimateBarActivity;
+import org.zack.library.UltimateBar;
 
-public class HintBarActivity2 extends UltimateBarActivity {
+public class HintBarActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,17 @@ public class HintBarActivity2 extends UltimateBarActivity {
 
 
     @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            UltimateBar ultimateBar = new UltimateBar(this);
+            ultimateBar.setHintBar();
+        }
+    }
+
+
+    /*    @Override
     protected void initBar() {
         setHintBar();
-    }
+    }*/
 }

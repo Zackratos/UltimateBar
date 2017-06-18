@@ -20,7 +20,7 @@ import android.widget.FrameLayout;
 
 public class UltimateBar {
 
-
+/*
     public static final int COLOR = 1;
     public static final int TRANSPARENT = 2;
     public static final int IMMERSION = 3;
@@ -101,21 +101,21 @@ public class UltimateBar {
             return new UltimateBar(this);
         }
 
+    }*/
+
+
+
+
+    private Activity activity;
+//    public UltimateBar() {}
+
+    public UltimateBar(Activity activity) {
+        this.activity = activity;
     }
 
 
 
-
-
-
-
-    /**
-     * 自定义状态栏和导航栏的颜色和透明度
-     *
-     * @param color 色值
-     * @param alpha 不透明度
-     */
-    public void setColorBar(Activity activity, @ColorInt int color, int alpha) {
+    public void setColorBar(@ColorInt int color, int alpha) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
@@ -139,19 +139,15 @@ public class UltimateBar {
     }
 
 
-    public void setColorBar(Activity activity, @ColorInt int color) {
-        setColorBar(activity, color, 0);
+
+    public void setColorBar(@ColorInt int color) {
+        setColorBar(color, 0);
     }
 
 
 
-    /**
-     * 半透明效果的状态栏和导航栏
-     *
-     * @param color 色值
-     * @param alpha 透明度
-     */
-    public void setTransparentBar(Activity activity, @ColorInt int color, int alpha) {
+
+    public void setTransparentBar(@ColorInt int color, int alpha) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             View decorView = window.getDecorView();
@@ -159,11 +155,13 @@ public class UltimateBar {
                     | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             decorView.setSystemUiVisibility(option);
-            if (alpha != Color.TRANSPARENT) {
-                int alphaColor = Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
-                window.setNavigationBarColor(alphaColor);
-                window.setStatusBarColor(alphaColor);
+            int finalColor = color;
+            if (color != Color.TRANSPARENT) {
+                finalColor = Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
             }
+            window.setNavigationBarColor(finalColor);
+            window.setStatusBarColor(finalColor);
+
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -180,19 +178,15 @@ public class UltimateBar {
 
 
 
-    /**
-     * 沉浸状态栏和导航栏
-     */
-    public void setImmersionBar(Activity activity) {
-        setTransparentBar(activity, Color.TRANSPARENT, 0);
+
+    public void setImmersionBar() {
+        setTransparentBar(Color.TRANSPARENT, 0);
     }
 
 
 
-    /**
-     * 隐藏状态栏和导航栏
-     */
-    public void setHintBar(Activity activity) {
+
+    public void setHintBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             View decorView = activity.getWindow().getDecorView();
             decorView.setSystemUiVisibility(
@@ -209,7 +203,7 @@ public class UltimateBar {
 
 
 
-    private View createStatusBarView(Context context, int color) {
+    private View createStatusBarView(Context context, @ColorInt int color) {
         View mStatusBarTintView = new View(context);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams
                 (FrameLayout.LayoutParams.MATCH_PARENT, getStatusBarHeight(context));
@@ -219,7 +213,7 @@ public class UltimateBar {
         return mStatusBarTintView;
     }
 
-    private View createNavBarView(Context context, int color) {
+    private View createNavBarView(Context context, @ColorInt int color) {
         View mNavBarTintView = new View(context);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams
                 (FrameLayout.LayoutParams.MATCH_PARENT, getNavigationHeight(context));
@@ -233,12 +227,7 @@ public class UltimateBar {
 
 
 
-    /**
-     * 判断是否存在导航栏
-     *
-     * @param activity
-     * @return
-     */
+
     private boolean navigationBarExist(Activity activity) {
         WindowManager windowManager = activity.getWindowManager();
         Display d = windowManager.getDefaultDisplay();
@@ -261,13 +250,7 @@ public class UltimateBar {
     }
 
 
-    /**
-     * 计算状态栏颜色
-     *
-     * @param color color值
-     * @param alpha alpha值
-     * @return 最终的状态栏颜色
-     */
+
     @ColorInt
     private int calculateColor(@ColorInt int color, int alpha) {
         float a = 1 - alpha / 255f;
@@ -281,9 +264,7 @@ public class UltimateBar {
     }
 
 
-    /**
-     * 设置根布局参数
-     */
+
     private void setRootView(Activity activity, boolean fit) {
         ViewGroup parent = (ViewGroup) activity.findViewById(android.R.id.content);
         for (int i = 0, count = parent.getChildCount(); i < count; i++) {
@@ -297,21 +278,13 @@ public class UltimateBar {
 
 
 
-    /**
-     * 获取状态栏高度
-     * @return 状态栏高度
-     */
     private int getStatusBarHeight(Context context) {
-        // 获得状态栏高度
         int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
         return context.getResources().getDimensionPixelSize(resourceId);
     }
 
 
-    /**
-     * 获取导航栏高度
-     * @return 导航栏高度
-     */
+
     public int getNavigationHeight(Context context) {
 
         int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");

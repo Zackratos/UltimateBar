@@ -3,13 +3,15 @@ package org.zack.sample;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import org.zack.library.UltimateBarActivity;
+import org.zack.library.UltimateBar;
 
-public class MainActivity extends UltimateBarActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private Button colorBar, immersionBar, transparentBar1,
@@ -19,6 +21,9 @@ public class MainActivity extends UltimateBarActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        UltimateBar ultimateBar = new UltimateBar(this);
+        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         tb.setBackgroundColor(ContextCompat.getColor(this, R.color.DeepSkyBlue));
@@ -68,8 +73,8 @@ public class MainActivity extends UltimateBarActivity implements View.OnClickLis
     }
 
 
-    @Override
+/*    @Override
     protected void initBar() {
         setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
-    }
+    }*/
 }

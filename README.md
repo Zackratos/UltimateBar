@@ -30,7 +30,7 @@ Transparent statusbar and navigationbar
 首先添加依赖：
 
 ```xml
-compile 'org.zackratos:UltimateBar:1.0.0'
+compile 'org.zackratos:ultimatebar:1.0.0'
 ```
 
 <br/><br/>

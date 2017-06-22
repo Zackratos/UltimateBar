@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.zack.sample">
+    package="org.zackratos.ultimatesample">
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".MainActivity">
+        <activity android:name="org.zackratos.ultimatesample.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,13 +16,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ColorBarActivity"
+            android:name="org.zackratos.ultimatesample.ColorBarActivity"
             android:label="ColorBar" />
-        <activity android:name=".TransparentBarActivity1" />
-        <activity android:name=".HintBarActivity1" />
-        <activity android:name=".ImmersionBarActivity" />
-        <activity android:name=".HintBarActivity2" />
-        <activity android:name=".TransparentBarActivity2"></activity>
+        <activity android:name="org.zackratos.ultimatesample.TransparentBarActivity1"
+            android:label="transparent"/>
+        <activity android:name="org.zackratos.ultimatesample.HintBarActivity1"
+            android:label="hint"/>
+        <activity android:name="org.zackratos.ultimatesample.ImmersionBarActivity"
+            android:label="immersion"/>
+        <activity android:name="org.zackratos.ultimatesample.HintBarActivity2"
+            android:label="hint"/>
+        <activity android:name="org.zackratos.ultimatesample.TransparentBarActivity2"
+            android:label="transparent"/>
     </application>
 
 </manifest>

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private Button colorBar, immersionBar, transparentBar1,
-            transparentBar2, hintBar1, hintBar2;
+            transparentBar2, hintBar1, hintBar2, drawerColorBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transparentBar2 = (Button) findViewById(R.id.transparent_bar_2);
         hintBar1 = (Button) findViewById(R.id.hint_bar_1);
         hintBar2 = (Button) findViewById(R.id.hint_bar_2);
+        drawerColorBar = (Button) findViewById(R.id.drawer_color_bar);
 
         colorBar.setOnClickListener(this);
         immersionBar.setOnClickListener(this);
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         transparentBar2.setOnClickListener(this);
         hintBar1.setOnClickListener(this);
         hintBar2.setOnClickListener(this);
+        drawerColorBar.setOnClickListener(this);
     }
 
     @Override
@@ -69,6 +71,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.hint_bar_2:
                 startActivity(new Intent(this, HintBarActivity2.class));
+                break;
+
+            case R.id.drawer_color_bar:
+                startActivity(new Intent(this, DrawerActivity.class));
+            default:
+
+                break;
         }
     }
 

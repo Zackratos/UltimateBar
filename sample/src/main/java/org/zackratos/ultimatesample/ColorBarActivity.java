@@ -24,6 +24,8 @@ public class ColorBarActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setBackgroundColor(ContextCompat.getColor(this, R.color.SpringGreen));
 
+
+
     }
 
 /*    @Override

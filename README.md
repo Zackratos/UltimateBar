@@ -115,6 +115,9 @@ public void onWindowFocusChanged(boolean hasFocus) {
 ## 更新日志
 
 
+### v1.0.2
+1.增加 DrawerLayout 使用的自定义颜色的状态栏和导航栏。
+
 ### v1.0.1
 1.判断当状态栏不存在时，不对状态栏进行设置；<br/><br/>
 2.自定义颜色的状态栏和导航栏中，当加深程度为 0 时，直接设置为原颜色，即不加深颜色；<br/><br/>

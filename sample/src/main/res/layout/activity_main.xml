@@ -47,6 +47,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hint_Bar_2"/>
+
+        <Button
+            android:id="@+id/drawer_color_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="drawer_color_bar"/>
     </LinearLayout>
 
 </LinearLayout>

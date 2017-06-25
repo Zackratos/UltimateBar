@@ -28,6 +28,8 @@
             android:label="hint"/>
         <activity android:name="org.zackratos.ultimatesample.TransparentBarActivity2"
             android:label="transparent"/>
+        <activity android:name=".DrawerActivity"
+            android:label="DrawerColorBar"/>
     </application>
 
 </manifest>

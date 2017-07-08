@@ -111,7 +111,7 @@ public void onWindowFocusChanged(boolean hasFocus) {
 <br/><br/><br/><br/>
 
 
-### 4.在 DrawerLayout 中设置自定义颜色的状态栏和导航栏：
+### 5.在 DrawerLayout 中设置自定义颜色的状态栏和导航栏：
 
 在 onCreate() 方法中：<br/><br/>
 

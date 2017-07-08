@@ -17,7 +17,7 @@
 首先添加依赖：
 
 ```xml
-compile 'org.zackratos:ultimatebar:1.0.1'
+compile 'org.zackratos:ultimatebar:1.0.3'
 ```
 
 <br/><br/>
@@ -111,8 +111,34 @@ public void onWindowFocusChanged(boolean hasFocus) {
 <br/><br/><br/><br/>
 
 
+### 4.在 DrawerLayout 中设置自定义颜色的状态栏和导航栏：
+
+在 onCreate() 方法中：<br/><br/>
+
+```java
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+```
+
+<br/><br/>
+
+如果需要设置不透明度：<br/><br/>
+
+```java
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue), 50);
+```
+
+
+
+<br/><br/><br/><br/>
+
+
 
 ## 更新日志
+
+### v1.0.3
+1.在 Android 4.4 中使用自定义颜色的状态栏和导航栏的时候，如果没有导航栏，不设置导航栏。
 
 
 ### v1.0.2

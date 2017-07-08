@@ -131,9 +131,10 @@ public class UltimateBar {
             int alphaColor = alpha == 0 ? color : calculateColor(color, alpha);
             ViewGroup decorView = (ViewGroup) window.getDecorView();
             decorView.addView(createStatusBarView(activity, alphaColor));
-            if (navigationBarExist(activity))
+            if (navigationBarExist(activity)) {
                 decorView.addView(createNavBarView(activity, alphaColor));
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            }
             setRootView(activity, true);
         }
     }

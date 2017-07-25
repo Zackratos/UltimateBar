@@ -113,7 +113,34 @@ public void onWindowFocusChanged(boolean hasFocus) {
 
 ### 5.在 DrawerLayout 中设置自定义颜色的状态栏和导航栏：
 
-在 onCreate() 方法中：<br/><br/>
+首先需要设置 DrawerLayout 下面的主局部中添加 android:fitsSystemWindows="true"：
+
+```xml
+<android.support.v4.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/SpringGreen"
+        android:layout_gravity="left"/>
+
+</android.support.v4.widget.DrawerLayout>
+```
+
+注意是 DrawerLayout 下面的主布局，DrawerLayout 本身和抽屉布局都不能添加。
+
+然后在 onCreate() 方法中：<br/><br/>
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);

@@ -149,7 +149,7 @@ ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlu
 
 <br/><br/>
 
-<img src="Screenshots/KITKAT_7.png" width=300px/><img src="Screenshots/LOLLIPOP_7.png" width=300px/>
+<img src="Screenshots/KITKAT_7.png" width=300px/>  <img src="Screenshots/LOLLIPOP_7.png" width=300px/>
 
 如果需要设置不透明度：<br/><br/>
 

@@ -105,6 +105,13 @@ public class UltimateBar {
     }*/
 
 
+    public static final int ONLY_STATUS_BAR = 0x100;
+
+    public static final int ONLY_NAVIGATION_BAR = 0x11;
+
+    public static final int BOTH_STATUS_NAVIGATION = 0x12;
+
+    private int type = BOTH_STATUS_NAVIGATION;
 
 
     private Activity activity;
@@ -123,18 +130,13 @@ public class UltimateBar {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
             int alphaColor = alpha == 0 ? color : calculateColor(color, alpha);
-            window.setStatusBarColor(alphaColor);
-            window.setNavigationBarColor(alphaColor);
+            setWindowBarColorWithType(window, alphaColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             int alphaColor = alpha == 0 ? color : calculateColor(color, alpha);
             ViewGroup decorView = (ViewGroup) window.getDecorView();
-            decorView.addView(createStatusBarView(activity, alphaColor));
-            if (navigationBarExist(activity)) {
-                decorView.addView(createNavBarView(activity, alphaColor));
-                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            }
+            setWindowBarColorWithTypeKitkat(window, decorView, alphaColor);
             setRootView(activity, true);
         }
     }
@@ -158,8 +160,7 @@ public class UltimateBar {
                 option = option | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
             }
             decorView.setSystemUiVisibility(option);
-            window.setNavigationBarColor(Color.TRANSPARENT);
-            window.setStatusBarColor(Color.TRANSPARENT);
+            setWindowBarColorWithType(window, Color.TRANSPARENT);
             int alphaColor = alpha == 0 ? color : calculateColor(color, alpha);
             decorView.addView(createStatusBarView(activity, alphaColor), 0);
             if (navigationBarExist(activity)) {
@@ -170,11 +171,7 @@ public class UltimateBar {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             ViewGroup decorView = (ViewGroup) window.getDecorView();
             int alphaColor = alpha == 0 ? color : calculateColor(color, alpha);
-            decorView.addView(createStatusBarView(activity, alphaColor), 0);
-            if (navigationBarExist(activity)) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                decorView.addView(createNavBarView(activity, alphaColor), 1);
-            }
+            setColorBarForDrawerWithTypeKitkat(window, decorView, alphaColor);
         }
     }
 
@@ -199,8 +196,7 @@ public class UltimateBar {
             int finalColor = alpha == 0 ? Color.TRANSPARENT :
                     Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
 
-            window.setNavigationBarColor(finalColor);
-            window.setStatusBarColor(finalColor);
+            setWindowBarColorWithType(window, finalColor);
 
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             Window window = activity.getWindow();
@@ -208,11 +204,7 @@ public class UltimateBar {
             ViewGroup decorView = (ViewGroup) window.getDecorView();
             int finalColor = alpha == 0 ? Color.TRANSPARENT :
                     Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
-            decorView.addView(createStatusBarView(activity, finalColor));
-            if (navigationBarExist(activity)) {
-                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                decorView.addView(createNavBarView(activity, finalColor));
-            }
+          setWindowBarColorWithTypeKitkat(window, decorView, finalColor);
         }
 
     }
@@ -240,7 +232,54 @@ public class UltimateBar {
     }
 
 
+    public void setType(int type) {
+        this.type = type;
+    }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void setWindowBarColorWithType(Window window, int color) {
+        if (type == ONLY_STATUS_BAR) {
+            window.setStatusBarColor(color);
+        } else if (type == ONLY_NAVIGATION_BAR) {
+            window.setNavigationBarColor(color);
+        } else {
+            window.setStatusBarColor(color);
+            window.setNavigationBarColor(color);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private void setWindowBarColorWithTypeKitkat(Window window, ViewGroup decorView, int color) {
+        if (type == ONLY_STATUS_BAR) {
+            decorView.addView(createStatusBarView(activity, color));
+        } else if (type == ONLY_NAVIGATION_BAR && navigationBarExist(activity)) {
+            decorView.addView(createNavBarView(activity, color));
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        } else {
+            decorView.addView(createStatusBarView(activity, color));
+            if (navigationBarExist(activity)) {
+                decorView.addView(createNavBarView(activity, color));
+                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            }
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    private void setColorBarForDrawerWithTypeKitkat(Window window, ViewGroup decorView, int color) {
+        if (type == ONLY_STATUS_BAR) {
+            decorView.addView(createStatusBarView(activity, color), 0);
+        } else if (type == ONLY_NAVIGATION_BAR && navigationBarExist(activity)) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            decorView.addView(createNavBarView(activity, color), 1);
+        } else {
+            decorView.addView(createStatusBarView(activity, color), 0);
+            if (navigationBarExist(activity)) {
+                window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+                decorView.addView(createNavBarView(activity, color), 1);
+            }
+        }
+
+    }
 
 
     private View createStatusBarView(Context context, @ColorInt int color) {

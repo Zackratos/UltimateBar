@@ -18,6 +18,7 @@ public class ColorBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text);
 
         UltimateBar ultimateBar = new UltimateBar(this);
+        ultimateBar.setType(UltimateBar.ONLY_STATUS_BAR);
         ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);

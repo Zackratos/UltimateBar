@@ -168,6 +168,11 @@ ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlu
 
 ## 更新日志
 
+### v1.1.0
+1.module 名从 ultimate 改为 ultimatebar；
+2.隐藏状态栏和导航栏的方法名从 hintBar 改为 hideBar （英文不好，之前一直以为 hint 是隐藏的意思）；
+
+
 ### v1.0.3
 1.在 Android 4.4 中使用自定义颜色的状态栏和导航栏的时候，如果没有导航栏，不设置导航栏。
 

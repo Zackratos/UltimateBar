@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private Button colorBar, immersionBar, transparentBar1,
-            transparentBar2, hintBar1, hintBar2, drawerColorBar;
+            transparentBar2, hideBar1, hideBar2, drawerColorBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +33,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         immersionBar = (Button) findViewById(R.id.immersion_bar);
         transparentBar1 = (Button) findViewById(R.id.transparent_bar_1);
         transparentBar2 = (Button) findViewById(R.id.transparent_bar_2);
-        hintBar1 = (Button) findViewById(R.id.hint_bar_1);
-        hintBar2 = (Button) findViewById(R.id.hint_bar_2);
+        hideBar1 = (Button) findViewById(R.id.hide_bar_1);
+        hideBar2 = (Button) findViewById(R.id.hide_bar_2);
         drawerColorBar = (Button) findViewById(R.id.drawer_color_bar);
 
         colorBar.setOnClickListener(this);
         immersionBar.setOnClickListener(this);
         transparentBar1.setOnClickListener(this);
         transparentBar2.setOnClickListener(this);
-        hintBar1.setOnClickListener(this);
-        hintBar2.setOnClickListener(this);
+        hideBar1.setOnClickListener(this);
+        hideBar2.setOnClickListener(this);
         drawerColorBar.setOnClickListener(this);
     }
 
@@ -65,12 +65,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, TransparentBarActivity2.class));
                 break;
 
-            case R.id.hint_bar_1:
-                startActivity(new Intent(this, HintBarActivity1.class));
+            case R.id.hide_bar_1:
+                startActivity(new Intent(this, HideBarActivity1.class));
                 break;
 
-            case R.id.hint_bar_2:
-                startActivity(new Intent(this, HintBarActivity2.class));
+            case R.id.hide_bar_2:
+                startActivity(new Intent(this, HideBarActivity2.class));
                 break;
 
             case R.id.drawer_color_bar:

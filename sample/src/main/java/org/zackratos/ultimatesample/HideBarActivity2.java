@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import org.zackratos.ultimatebar.UltimateBar;
 
-public class HintBarActivity2 extends AppCompatActivity {
+public class HideBarActivity2 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +22,13 @@ public class HintBarActivity2 extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             UltimateBar ultimateBar = new UltimateBar(this);
-            ultimateBar.setHintBar();
+            ultimateBar.setHideBar();
         }
     }
 
 
     /*    @Override
     protected void initBar() {
-        setHintBar();
+        setHideBar();
     }*/
 }

@@ -9,7 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/sample" />
-            <option value="$PROJECT_DIR$/ultimate" />
+            <option value="$PROJECT_DIR$/ultimatebar" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

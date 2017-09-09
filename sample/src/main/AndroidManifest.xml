@@ -20,11 +20,11 @@
             android:label="ColorBar" />
         <activity android:name="org.zackratos.ultimatesample.TransparentBarActivity1"
             android:label="transparent"/>
-        <activity android:name="org.zackratos.ultimatesample.HintBarActivity1"
+        <activity android:name="org.zackratos.ultimatesample.HideBarActivity1"
             android:label="hint"/>
         <activity android:name="org.zackratos.ultimatesample.ImmersionBarActivity"
             android:label="immersion"/>
-        <activity android:name="org.zackratos.ultimatesample.HintBarActivity2"
+        <activity android:name="org.zackratos.ultimatesample.HideBarActivity2"
             android:label="hint"/>
         <activity android:name="org.zackratos.ultimatesample.TransparentBarActivity2"
             android:label="transparent"/>

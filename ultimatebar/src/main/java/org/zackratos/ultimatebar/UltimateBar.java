@@ -3,6 +3,7 @@ package org.zackratos.ultimatebar;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.ColorInt;
@@ -16,104 +17,68 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 /**
+ *
  * Created by zack on 17-5-14.
  */
 
 public class UltimateBar {
 
-/*
-    public static final int COLOR = 1;
-    public static final int TRANSPARENT = 2;
-    public static final int IMMERSION = 3;
-    public static final int HINT = 4;
-
-
-
-    private int type;
-
-    @ColorInt
-    private int color;
-
-    private int alpha;
-
-
-    private UltimateBar(Builder builder) {
-        this.type = builder.type;
-        this.color = builder.color;
-        this.alpha = builder.alpha;
-
-    }
-
-
-
-
-    public static Builder newBuilder() {
-        return new Builder();
-    }
-
-
-
-    public void into(Activity activity) {
-        if (type == COLOR) {
-            setColorBar(activity, color, alpha);
-        } else if (type == TRANSPARENT) {
-            setTransparentBar(activity, color, alpha);
-        } else if (type == IMMERSION) {
-            setImmersionBar(activity);
-        } else if (type == HINT) {
-            setHintBar(activity);
-        } else {
-            throw new NullPointerException("you must set a correct type");
-        }
-    }
-
-
-    public static class Builder {
-
-        private int type;
-
-        @ColorInt
-        private int color;
-
-        private int alpha;
-
-        private Builder() {}
-
-        public Builder type(int type) {
-            this.type = type;
-            return this;
-        }
-
-
-
-        public Builder color(@ColorInt int color) {
-            this.color = color;
-            return this;
-        }
-
-        
-        public Builder alpha(int alpha) {
-            this.alpha = alpha;
-            return this;
-        }
-
-
-        public UltimateBar build() {
-            return new UltimateBar(this);
-        }
-
-    }*/
-
-
-
 
     private Activity activity;
-//    public UltimateBar() {}
 
     public UltimateBar(Activity activity) {
         this.activity = activity;
     }
 
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void setStatusColorBar(@ColorInt int color, int alpha) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            int finalColor = alpha == 0 ? color : calculateColor(color, alpha);
+            window.setStatusBarColor(finalColor);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            int finalColor = alpha == 0 ? color : calculateColor(color, alpha);
+            ViewGroup decorView = (ViewGroup) window.getDecorView();
+            decorView.addView(createStatusBarView(activity, finalColor));
+            setRootView(activity, true);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void setStatusColorBar(@ColorInt int color) {
+        setStatusColorBar(color, 0);
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void setNavigationColorBar(@ColorInt int color, int alpha) {
+        if (!navigationBarExist(activity)) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            int finalColor = alpha == 0 ? color : calculateColor(color, alpha);
+            window.setNavigationBarColor(finalColor);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = activity.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            int finalColor = alpha == 0 ? color : calculateColor(color, alpha);
+            ViewGroup decorView = (ViewGroup) window.getDecorView();
+            decorView.addView(createNavBarView(activity, finalColor));
+            setRootView(activity, true);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void setNavigationColorBar(@ColorInt int color) {
+        setNavigationColorBar(color);
+    }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setColorBar(@ColorInt int color, int alpha) {
@@ -122,9 +87,9 @@ public class UltimateBar {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-            int alphaColor = alpha == 0 ? color : calculateColor(color, alpha);
-            window.setStatusBarColor(alphaColor);
-            window.setNavigationBarColor(alphaColor);
+            int finalColor = alpha == 0 ? color : calculateColor(color, alpha);
+            window.setStatusBarColor(finalColor);
+            window.setNavigationBarColor(finalColor);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -226,7 +191,7 @@ public class UltimateBar {
 
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setHintBar() {
+    public void setHideBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             View decorView = activity.getWindow().getDecorView();
             decorView.setSystemUiVisibility(
@@ -262,9 +227,6 @@ public class UltimateBar {
         mNavBarTintView.setBackgroundColor(color);
         return mNavBarTintView;
     }
-
-
-
 
 
 
@@ -319,16 +281,16 @@ public class UltimateBar {
 
 
     private int getStatusBarHeight(Context context) {
-        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
-        return context.getResources().getDimensionPixelSize(resourceId);
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
+        return resources.getDimensionPixelSize(resourceId);
     }
 
 
-
-    public int getNavigationHeight(Context context) {
-
-        int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-        return context.getResources().getDimensionPixelSize(resourceId);
+    private int getNavigationHeight(Context context) {
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        return resources.getDimensionPixelSize(resourceId);
     }
 
 }

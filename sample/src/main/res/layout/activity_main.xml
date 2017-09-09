@@ -37,13 +37,13 @@
             android:text="Transparent_Bar_2"/>
 
         <Button
-            android:id="@+id/hint_bar_1"
+            android:id="@+id/hide_bar_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hint_Bar_1"/>
 
         <Button
-            android:id="@+id/hint_bar_2"
+            android:id="@+id/hide_bar_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Hint_Bar_2"/>

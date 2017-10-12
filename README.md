@@ -230,8 +230,8 @@ ultimateBar.setColorStatusBarForDrawer(ContextCompat.getColor(this, R.color.Deep
 ## 更新日志
 
 ### v1.1.0 (2017.10.12)
-1.module 名从 ultimate 改为 ultimatebar；
-2.隐藏状态栏和导航栏的方法名从 hintBar 改为 hideBar （英文不好，之前一直以为 hint 是隐藏的意思）；
+1.module 名从 ultimate 改为 ultimatebar；<br/><br/>
+2.隐藏状态栏和导航栏的方法名从 hintBar 改为 hideBar （英文不好，之前一直以为 hint 是隐藏的意思）；<br/><br/>
 3.增加单独设置状态栏和单独设置导航栏的方法。
 
 

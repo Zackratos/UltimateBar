@@ -18,7 +18,6 @@ public class HideBarActivity1 extends AppCompatActivity {
         toolbar = findViewById(R.id.include_toolbar);
         toolbar.setVisibility(View.GONE);
 
-
     }
 
     @Override

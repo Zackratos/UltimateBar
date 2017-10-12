@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import org.zackratos.ultimatebar.UltimateBar;
 
 /**
+ *
  * Created by Administrator on 2017/6/25.
  */
 

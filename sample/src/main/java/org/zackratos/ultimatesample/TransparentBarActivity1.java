@@ -16,7 +16,7 @@ public class TransparentBarActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text);
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setTransparentBar(Color.BLUE, 50);
+        ultimateBar.setTransparentStatusBar(Color.BLUE, 50);
         toolbar = findViewById(R.id.include_toolbar);
         toolbar.setVisibility(View.GONE);
     }

@@ -29,9 +29,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/text_content"/>
 
-
             </LinearLayout>
-
 
         </android.support.v4.widget.NestedScrollView>
 
@@ -42,8 +40,13 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/SpringGreen"
-        android:layout_gravity="left"/>
+        android:layout_gravity="left">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/yurisa_1"
+            android:scaleType="centerCrop"/>
+    </FrameLayout>
 
 
 

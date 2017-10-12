@@ -38,19 +38,39 @@ ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
 
 <br/><br/>
 
-如果需要设置不透明度：<br/><br/>
+如果需要设置颜色深度：<br/><br/>
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
 ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
 ```
 
+第二个参数表示颜色的深度，范围是 0 - 255,0表示没有加深，255表示完全黑色
 <br/><br/>
 <img src="Screenshots/KITKAT_1.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_1.png" width="300px"/>
 
 
 <br/><br/><br/><br/>
+
+如果仅需要设置状态栏的颜色：
+
+```java
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setColorsStatusBar(ContextCompat.getColor(this, R.color.SpringGreen));
+```
+
+<br/><br/><br/><br/>
+
+如果仅需要设置导航栏的颜色：
+
+```java
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setColorsNavigationBar(ContextCompat.getColor(this, R.color.SpringGreen));
+```
+
+<br/><br/><br/><br/>
+
 
 ### 2.半透明状态栏和导航栏
 
@@ -61,12 +81,23 @@ UltimateBar ultimateBar = new UltimateBar(this);
 ultimateBar.setTransparentBar(Color.BLUE, 50);
 ```
 
+第二个参数表示透明度，范围是0-255,0表示完全透明，255表示完全不透明
+
 <br/><br/>
 <img src="Screenshots/KITKAT_3.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_3.png" width="300px"/>
 <img src="Screenshots/KITKAT_4.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_4.png" width="300px"/>
 
+
+<br/><br/><br/><br/>
+
+如果仅需要设置状态栏的半透明效果：
+
+```java
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setTransparentStatusBar(Color.BLUE, 50);
+```
 
 <br/><br/><br/><br/>
 
@@ -86,6 +117,14 @@ ultimateBar.setImmersionBar();
 
 <br/><br/><br/><br/>
 
+如果仅需要设置状态栏的沉浸式效果：
+
+```java
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setImmersionStatusBar();
+```
+
+<br/><br/><br/><br/>
 
 
 ### 4.隐藏状态栏和导航栏：
@@ -98,7 +137,7 @@ public void onWindowFocusChanged(boolean hasFocus) {
     super.onWindowFocusChanged(hasFocus);
     if (hasFocus) {
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setHintBar();
+        ultimateBar.setHideBar();
     }
 }
 ```
@@ -107,6 +146,20 @@ public void onWindowFocusChanged(boolean hasFocus) {
 <img src="Screenshots/LOLLIPOP_5.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_6.png" width="300px"/>
 
+<br/><br/><br/><br/>
+
+如果仅需要设置状态栏隐藏：
+
+```java
+@Override
+public void onWindowFocusChanged(boolean hasFocus) {
+    super.onWindowFocusChanged(hasFocus);
+    if (hasFocus) {
+        UltimateBar ultimateBar = new UltimateBar(this);
+        ultimateBar.setHideStatusBar();
+    }
+}
+```
 
 <br/><br/><br/><br/>
 
@@ -160,7 +213,15 @@ UltimateBar ultimateBar = new UltimateBar(this);
 ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue), 50);
 ```
 
+<br/><br/><br/><br/>
 
+
+如果仅需要设置状态栏：
+
+```java
+UltimateBar ultimateBar = new UltimateBar(this);
+ultimateBar.setColorStatusBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+```
 
 <br/><br/><br/><br/>
 
@@ -168,7 +229,7 @@ ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlu
 
 ## 更新日志
 
-### v1.1.0
+### v1.1.0 (2017.10.12)
 1.module 名从 ultimate 改为 ultimatebar；
 2.隐藏状态栏和导航栏的方法名从 hintBar 改为 hideBar （英文不好，之前一直以为 hint 是隐藏的意思）；
 3.增加单独设置状态栏和单独设置导航栏的方法。

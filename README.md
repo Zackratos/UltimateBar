@@ -17,7 +17,7 @@
 首先添加依赖：
 
 ```xml
-compile 'org.zackratos:ultimatebar:1.0.3'
+compile 'org.zackratos:ultimatebar:1.1.0'
 ```
 
 <br/><br/>

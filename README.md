@@ -32,8 +32,9 @@ ultimateBar.setColorBar(statusColor, 100, navColor, 100);
 前两个参数表示状态栏的颜色和深度，后两个参数表示导航栏的颜色和深度，
 深度的范围是 0 - 255,0 表示没有加深，255 表示完全黑色
 
-<br/>
-<img src="Screenshots/KITKAT_COLOR_1.png" width="300px"/><img src="Screenshots/LOLLIPOP_COLOR_1.png" width="300px"/>
+<br/><br/>
+<img src="Screenshots/KITKAT_COLOR_1.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_COLOR_1.png" width="300px"/>
 
 <br/><br/>
 
@@ -47,8 +48,9 @@ ultimateBar.setColorBar(statusColor, navColor);
 
 两个参数分别表示状态栏颜色和导航栏颜色
 
-<br/>
-<img src="Screenshots/KITKAT_COLOR_2.png" width="300px"/><img src="Screenshots/LOLLIPOP_COLOR_2.png" width="300px"/>
+<br/><br/>
+<img src="Screenshots/KITKAT_COLOR_2.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_COLOR_2.png" width="300px"/>
 
 <br/><br/>
 
@@ -74,12 +76,12 @@ UltimateBar ultimateBar = new UltimateBar(this);
 ultimateBar.setTransparentBar(Color.BLUE, 100, Color.GREEN, 100);
 ```
 
-第一个参数表示颜色，第二个参数表示透明度，范围是 0-255,0 表示完全透明，255 表示完全不透明
+前两个参数表示状态栏的颜色和透明度，后两个参数表示导航栏的颜色和透明度，
+透明度的范围是 0-255,0 表示完全透明，255 表示完全不透明
 
-<br/>
+<br/><br/>
 <img src="Screenshots/KITKAT_TRANSPARENT_1.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_TRANSPARENT_1.png" width="300px"/>
-<br/>
 <img src="Screenshots/KITKAT_TRANSPARENT_2.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_TRANSPARENT_2.png" width="300px"/>
 
@@ -89,8 +91,10 @@ ultimateBar.setTransparentBar(Color.BLUE, 100, Color.GREEN, 100);
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setTransparentStatusBar(Color.BLUE, 100);
+ultimateBar.setTransparentBar(Color.BLUE, 100);
 ```
+
+参数分别表示状态栏的颜色和透明度
 
 <br/><br/><br/>
 
@@ -107,8 +111,9 @@ ultimateBar.setImmersionBar(true);
 
 参数表示是否要设置导航栏沉浸，true 表示导航栏沉浸，false 表示导航栏不沉浸
 
-<br/>
-<img src="Screenshots/KITKAT_IMMERSION.png" width="300px"/><img src="Screenshots/LOLLIPOP_IMMERSION.png" width="300px"/>
+<br/><br/>
+<img src="Screenshots/KITKAT_IMMERSION.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_IMMERSION.png" width="300px"/>
 
 
 <br/><br/><br/>
@@ -131,8 +136,9 @@ public void onWindowFocusChanged(boolean hasFocus) {
 
 参数表示是否要隐藏隐藏导航栏，true 表示隐藏，false 表示不隐藏
 
-<br/>
-<img src="Screenshots/HIDE_1.png" width="300px"/><img src="Screenshots/HIDE_2.png" width="300px"/>
+<br/><br/>
+<img src="Screenshots/HIDE_1.png" width="300px"/>
+<img src="Screenshots/HIDE_2.png" width="300px"/>
 
 <br/><br/><br/>
 
@@ -178,8 +184,9 @@ ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
 
 参数的意义和前面的设置状态栏和导航栏颜色的一样
 
-<br/>
-<img src="Screenshots/KITKAT_DRAWER.png" width=300px/><img src="Screenshots/LOLLIPOP_DRAWER.png" width=300px/>
+<br/><br/>
+<img src="Screenshots/KITKAT_DRAWER.png" width=300px/>
+<img src="Screenshots/LOLLIPOP_DRAWER.png" width=300px/>
 
 
 <br/><br/><br/>

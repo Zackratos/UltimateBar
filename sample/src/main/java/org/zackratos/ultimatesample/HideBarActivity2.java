@@ -22,7 +22,7 @@ public class HideBarActivity2 extends AppCompatActivity {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
             UltimateBar ultimateBar = new UltimateBar(this);
-            ultimateBar.setHideBar();
+            ultimateBar.setHideBar(true);
         }
     }
 

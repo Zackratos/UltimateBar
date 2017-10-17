@@ -1,6 +1,7 @@
 package org.zackratos.ultimatesample;
 
 import android.content.Intent;
+import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+
+        @ColorInt int color = ContextCompat.getColor(this, R.color.DeepSkyBlue);
+        ultimateBar.setColorBar(color, color);
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         tb.setBackgroundColor(ContextCompat.getColor(this, R.color.DeepSkyBlue));

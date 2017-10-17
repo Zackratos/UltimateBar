@@ -1,6 +1,7 @@
 package org.zackratos.ultimatesample;
 
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +19,9 @@ public class ColorBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text);
 
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
+//        @ColorInt int color = ContextCompat.getColor(this, R.color.SpringGreen);
+        ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen),
+                50, ContextCompat.getColor(this, R.color.DoderBlue), 50);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

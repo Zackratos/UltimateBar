@@ -14,7 +14,7 @@ public class TransparentBarActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setTransparentBar(Color.GREEN, 50);
+        ultimateBar.setTransparentBar(Color.GREEN, 100, Color.RED, 100);
         ((ImageView) findViewById(R.id.image_view))
                 .setImageResource(R.drawable.yurisa_3);
     }

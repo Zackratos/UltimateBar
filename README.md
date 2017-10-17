@@ -4,102 +4,97 @@
 
 ## 特点：
 
-1.四种效果，自定义颜色的状态栏和导航栏，半透明状态栏和导航栏，
-沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/><br/>
-2.可以自定义状态栏和导航栏的颜色和透明度；<br/><br/>
-3.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/><br/>
-
+1.四种效果，自定义颜色的状态栏和导航栏，半透明状态栏和导航栏，沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/>
+2.可以自定义状态栏和导航栏的颜色和透明度；<br/>
+3.状态栏和导航栏可以分开设置，分别设置不同的颜色和透明度；<br/>
+4.可以只设置状态栏或者状态栏和导航栏同时设置；<br/>
+5.针对 DrawerLayout 的自定义颜色的状态栏和导航栏做了专门的适配；<br/>
+6.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/>
 
 
 ## 使用方法：
 
-
-首先添加依赖：
+gradle：
 
 ```xml
-compile 'org.zackratos:ultimatebar:1.1.0'
+compile 'org.zackratos:ultimatebar:1.1.1'
 ```
-
-<br/><br/>
 
 ### 1.自定义颜色的状态栏和导航栏
 
-在 onCreate() 方法中：<br/><br/>
+在 onCreate() 方法中：
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+ultimateBar.setColorBar(statusColor, 100, navColor, 100);
 ```
 
+前两个参数表示状态栏的颜色和深度，后两个参数表示导航栏的颜色和深度，
+深度的范围是 0 - 255,0 表示没有加深，255 表示完全黑色
+
+<br/>
+<img src="Screenshots/KITKAT_COLOR_1.png" width="300px"/><img src="Screenshots/LOLLIPOP_COLOR_1.png" width="300px"/>
+
 <br/><br/>
-<img src="Screenshots/KITKAT_0.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_0.png" width="300px"/>
 
 
-<br/><br/>
-
-如果需要设置颜色深度：<br/><br/>
+如果不需要设置颜色深度：
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorBar(ContextCompat.getColor(this, R.color.SpringGreen), 50);
+ultimateBar.setColorBar(statusColor, navColor);
 ```
 
-第二个参数表示颜色的深度，范围是 0 - 255,0表示没有加深，255表示完全黑色
+两个参数分别表示状态栏颜色和导航栏颜色
+
+<br/>
+<img src="Screenshots/KITKAT_COLOR_2.png" width="300px"/><img src="Screenshots/LOLLIPOP_COLOR_2.png" width="300px"/>
+
 <br/><br/>
-<img src="Screenshots/KITKAT_1.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_1.png" width="300px"/>
 
-
-<br/><br/><br/><br/>
 
 如果仅需要设置状态栏的颜色：
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorsStatusBar(ContextCompat.getColor(this, R.color.SpringGreen));
+ultimateBar.setColorsStatusBar(statusColor, 100);
 ```
 
-<br/><br/><br/><br/>
+参数分别表示状态栏的颜色和深度
 
-如果仅需要设置导航栏的颜色：
-
-```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorsNavigationBar(ContextCompat.getColor(this, R.color.SpringGreen));
-```
-
-<br/><br/><br/><br/>
+<br/><br/><br/>
 
 
 ### 2.半透明状态栏和导航栏
 
-在 onCreate() 方法中：<br/><br/>
+在 onCreate() 方法中：
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setTransparentBar(Color.BLUE, 50);
+ultimateBar.setTransparentBar(Color.BLUE, 100, Color.GREEN, 100);
 ```
 
-第二个参数表示透明度，范围是0-255,0表示完全透明，255表示完全不透明
+第一个参数表示颜色，第二个参数表示透明度，范围是 0-255,0 表示完全透明，255 表示完全不透明
 
-<br/><br/>
-<img src="Screenshots/KITKAT_3.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_3.png" width="300px"/>
-<img src="Screenshots/KITKAT_4.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_4.png" width="300px"/>
+<br/>
+<img src="Screenshots/KITKAT_TRANSPARENT_1.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_TRANSPARENT_1.png" width="300px"/>
+<br/>
+<img src="Screenshots/KITKAT_TRANSPARENT_2.png" width="300px"/>
+<img src="Screenshots/LOLLIPOP_TRANSPARENT_2.png" width="300px"/>
 
-
-<br/><br/><br/><br/>
+<br/><br/><br/>
 
 如果仅需要设置状态栏的半透明效果：
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setTransparentStatusBar(Color.BLUE, 50);
+ultimateBar.setTransparentStatusBar(Color.BLUE, 100);
 ```
 
-<br/><br/><br/><br/>
+<br/><br/><br/>
+
+
 
 ### 3.沉浸式状态栏和导航栏：
 
@@ -107,29 +102,21 @@ ultimateBar.setTransparentStatusBar(Color.BLUE, 50);
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setImmersionBar();
+ultimateBar.setImmersionBar(true);
 ```
 
-<br/><br/>
-<img src="Screenshots/KITKAT_2.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_2.png" width="300px"/>
+参数表示是否要设置导航栏沉浸，true 表示导航栏沉浸，false 表示导航栏不沉浸
+
+<br/>
+<img src="Screenshots/KITKAT_IMMERSION.png" width="300px"/><img src="Screenshots/LOLLIPOP_IMMERSION.png" width="300px"/>
 
 
-<br/><br/><br/><br/>
-
-如果仅需要设置状态栏的沉浸式效果：
-
-```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setImmersionStatusBar();
-```
-
-<br/><br/><br/><br/>
+<br/><br/><br/>
 
 
 ### 4.隐藏状态栏和导航栏：
 
-在 onWindowFocusChanged() 方法中：<br/><br/>
+在 onWindowFocusChanged() 方法中：
 
 ```java
 @Override
@@ -137,31 +124,17 @@ public void onWindowFocusChanged(boolean hasFocus) {
     super.onWindowFocusChanged(hasFocus);
     if (hasFocus) {
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setHideBar();
+        ultimateBar.setHideBar(true);
     }
 }
 ```
 
-<br/><br/>
-<img src="Screenshots/LOLLIPOP_5.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_6.png" width="300px"/>
+参数表示是否要隐藏隐藏导航栏，true 表示隐藏，false 表示不隐藏
 
-<br/><br/><br/><br/>
+<br/>
+<img src="Screenshots/HIDE_1.png" width="300px"/><img src="Screenshots/HIDE_2.png" width="300px"/>
 
-如果仅需要设置状态栏隐藏：
-
-```java
-@Override
-public void onWindowFocusChanged(boolean hasFocus) {
-    super.onWindowFocusChanged(hasFocus);
-    if (hasFocus) {
-        UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setHideStatusBar();
-    }
-}
-```
-
-<br/><br/><br/><br/>
+<br/><br/><br/>
 
 
 ### 5.在 DrawerLayout 中设置自定义颜色的状态栏和导航栏：
@@ -173,65 +146,56 @@ public void onWindowFocusChanged(boolean hasFocus) {
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+
     </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/SpringGreen"
-        android:layout_gravity="left"/>
+        android:layout_gravity="left"
+        android:fitsSystemWindows="false"/>
 
 </android.support.v4.widget.DrawerLayout>
 ```
 
 注意是 DrawerLayout 下面的主布局，DrawerLayout 本身和抽屉布局都不能添加。
 
-然后在 onCreate() 方法中：<br/><br/>
+然后在 onCreate() 方法中：
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
 ```
 
-<br/><br/>
+参数的意义和前面的设置状态栏和导航栏颜色的一样
 
-<img src="Screenshots/KITKAT_7.png" width=300px/>  <img src="Screenshots/LOLLIPOP_7.png" width=300px/>
-<br/><br/>
-
-
-如果需要设置不透明度：
-
-```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue), 50);
-```
-
-<br/><br/><br/><br/>
+<br/>
+<img src="Screenshots/KITKAT_DRAWER.png" width=300px/><img src="Screenshots/LOLLIPOP_DRAWER.png" width=300px/>
 
 
-如果仅需要设置状态栏：
+<br/><br/><br/>
 
-```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorStatusBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue));
-```
-
-<br/><br/><br/><br/>
 
 
 
 ## 更新日志
 
+### v1.1.1 (2017.10.17)
+1.取消单独设置导航栏的方法（无法实现，实际中也没有这种奇葩需求）；<br/>
+2.修改每种设置方法的参数，可以在同一个方法中分别对状态栏和导航栏的属性进行设置。
+
 ### v1.1.0 (2017.10.12)
-1.module 名从 ultimate 改为 ultimatebar；<br/><br/>
-2.隐藏状态栏和导航栏的方法名从 hintBar 改为 hideBar （英文不好，之前一直以为 hint 是隐藏的意思）；<br/><br/>
+1.module 名从 ultimate 改为 ultimatebar；<br/>
+2.隐藏状态栏和导航栏的方法名从 hintBar 改为 hideBar （英文不好，之前一直以为 hint 是隐藏的意思）；<br/>
 3.增加单独设置状态栏和单独设置导航栏的方法。
 
 
@@ -243,17 +207,17 @@ ultimateBar.setColorStatusBarForDrawer(ContextCompat.getColor(this, R.color.Deep
 1.增加 DrawerLayout 使用的自定义颜色的状态栏和导航栏。
 
 ### v1.0.1
-1.判断当状态栏不存在时，不对状态栏进行设置；<br/><br/>
-2.自定义颜色的状态栏和导航栏中，当加深程度为 0 时，直接设置为原颜色，即不加深颜色；<br/><br/>
-3.半透明的状态栏和导航栏中，当不透明度为 0 时，直接设为完全透明，即不进行不透明度计算；<br/><br/>
+1.判断当状态栏不存在时，不对状态栏进行设置；<br/>
+2.自定义颜色的状态栏和导航栏中，当加深程度为 0 时，直接设置为原颜色，即不加深颜色；<br/>
+3.半透明的状态栏和导航栏中，当不透明度为 0 时，直接设为完全透明，即不进行不透明度计算；<br/>
 4.修改包名。
 
 
 ### v1.0.0
 1.四种效果，自定义颜色的状态栏和导航栏，半透明状态栏和导航栏，
-沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/><br/>
-2.可以自定义状态栏和导航栏的颜色和透明度；<br/><br/>
-3.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/><br/>
+沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/>
+2.可以自定义状态栏和导航栏的颜色和透明度；<br/>
+3.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/>
 
 
 

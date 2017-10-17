@@ -23,7 +23,8 @@ public class DrawerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_drawer);
 
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setColorBarForDrawer(ContextCompat.getColor(this, R.color.DeepSkyBlue));
+        int color = ContextCompat.getColor(this, R.color.DeepSkyBlue);
+        ultimateBar.setColorBarForDrawer(color, color);
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

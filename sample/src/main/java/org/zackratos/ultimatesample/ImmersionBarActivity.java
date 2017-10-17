@@ -14,7 +14,7 @@ public class ImmersionBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
 
         UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setImmersionBar();
+        ultimateBar.setImmersionBar(true);
 
         ((ImageView) findViewById(R.id.image_view)).setImageResource(R.drawable.yurisa_1);
     }

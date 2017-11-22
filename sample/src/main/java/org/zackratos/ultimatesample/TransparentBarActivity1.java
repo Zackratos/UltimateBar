@@ -24,6 +24,6 @@ public class TransparentBarActivity1 extends AppCompatActivity {
 
 /*    @Override
     protected void initBar() {
-        setTransparentBar(Color.BLUE, 50);
+        setTransparentStatusBar(Color.BLUE, 50);
     }*/
 }

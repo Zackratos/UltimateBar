@@ -11,13 +11,12 @@
 5.针对 DrawerLayout 的自定义颜色的状态栏和导航栏做了专门的适配；<br/>
 6.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/>
 
-
 ## 使用方法：
 
 gradle：
 
 ```xml
-compile 'org.zackratos:ultimatebar:1.1.1'
+compile 'org.zackratos:ultimatebar:1.1.2'
 ```
 
 ### 1.自定义颜色的状态栏和导航栏
@@ -134,7 +133,7 @@ public void onWindowFocusChanged(boolean hasFocus) {
 }
 ```
 
-参数表示是否要隐藏隐藏导航栏，true 表示隐藏，false 表示不隐藏
+参数表示是否要隐藏导航栏，true 表示隐藏，false 表示不隐藏
 
 <br/><br/>
 <img src="Screenshots/HIDE_1.png" width="300px"/>
@@ -195,6 +194,13 @@ ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
 
 
 ## 更新日志
+
+### v1.1.2 (2017.11.22)
+1.重命名仅设置状态栏半透明的方法名为 setTransparentStatusBar，之前为 setTransparentBar；<br/>
+2.在相应的方法中增加必要的注释；<br/>
+3.当传入的颜色深度或透明度的值小于 0 时转化为 0，大于 255 时转化为 255；<br/>
+4.修改 .gitignore 文件，删除不必要的 .idea 目录。
+
 
 ### v1.1.1 (2017.10.17)
 1.取消单独设置导航栏的方法（无法实现，实际中也没有这种奇葩需求）；<br/>

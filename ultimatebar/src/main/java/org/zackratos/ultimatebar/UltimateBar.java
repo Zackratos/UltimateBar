@@ -203,7 +203,7 @@ public class UltimateBar {
 
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setTransparentBar(@ColorInt int color, int alpha) {
+    public void setTransparentStatusBar(@ColorInt int color, int alpha) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             View decorView = window.getDecorView();
@@ -242,7 +242,7 @@ public class UltimateBar {
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setImmersionBar() {
-        setTransparentBar(Color.TRANSPARENT, 0);
+        setTransparentStatusBar(Color.TRANSPARENT, 0);
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -273,8 +273,13 @@ public class UltimateBar {
     }*/
 
 
-
-
+    /**
+     * StatusBar and navigationBar color
+     * @param statusColor StatusBar color
+     * @param statusDepth StatusBar color depth
+     * @param navColor NavigationBar color
+     * @param navDepth NavigationBar color depth
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setColorBar(@ColorInt int statusColor, int statusDepth,
                             @ColorInt int navColor, int navDepth) {
@@ -287,7 +292,11 @@ public class UltimateBar {
         setColorBar(statusColor, 0, navColor, 0);
     }
 
-
+    /**
+     * StatusBar color
+     * @param statusColor StatusBar color
+     * @param statusDepth StatusBar color depth
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setColorStatusBar(@ColorInt int statusColor, int statusDepth) {
         setColorBar(statusColor, statusDepth, false, Color.BLACK, 255);
@@ -320,29 +329,46 @@ public class UltimateBar {
         setColorStatusBarForDrawer(statusColor, 0);
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setTransparentBar(@ColorInt int statusColor, int statusAlpha) {
-        setTransparentBar(statusColor, statusAlpha, false, Color.BLACK, 255);
-    }
-
-
+    /**
+     * StatusBar and NavigationBar transparent
+     * @param statusColor StatusBar color
+     * @param statusAlpha StatusBar alpha
+     * @param navColor NavigationBar color
+     * @param navAlpha NavigationBar alpha
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setTransparentBar(@ColorInt int statusColor, int statusAlpha,
                                   @ColorInt int navColor, int navAlpha) {
         setTransparentBar(statusColor, statusAlpha, true, navColor, navAlpha);
     }
 
+    /**
+     * StatusBar transparent
+     * @param statusColor StatusBar color
+     * @param statusAlpha StatusBar alpha
+     */
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void setTransparentStatusBar(@ColorInt int statusColor, int statusAlpha) {
+        setTransparentBar(statusColor, statusAlpha, false, Color.BLACK, 255);
+    }
+
+    /**
+     * StatusBar and NavigationBar immersion
+     * @param applyNav apply NavigationBar
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setImmersionBar(boolean applyNav) {
         if (applyNav) {
             setTransparentBar(Color.TRANSPARENT, 0, Color.TRANSPARENT, 0);
         } else {
-            setTransparentBar(Color.TRANSPARENT, 0);
+            setTransparentStatusBar(Color.TRANSPARENT, 0);
         }
     }
 
-
-
+    /**
+     * StatusBar and NavigationBar hide
+     * @param applyNav apply NavigationBar
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     public void setHideBar(boolean applyNav) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -360,34 +386,39 @@ public class UltimateBar {
     }
 
 
-
-
-
-
-
+    /**
+     * StatusBar and NavigationBar color
+     * @param statusColor StatusBar color
+     * @param statusDepth StatusBar color depth
+     * @param applyNav apply NavigationBar or no
+     * @param navColor NavigationBar color (applyNav == true)
+     * @param navDepth NavigationBar color depth (applyNav = true)
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void setColorBar(@ColorInt int statusColor, int statusDepth, boolean applyNav,
                              @ColorInt int navColor, int navDepth) {
-
+        int realStatusDepth = limitDepthOrAlpha(statusDepth);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            int finalStatusColor = statusDepth == 0 ? statusColor : calculateColor(statusColor, statusDepth);
+            int finalStatusColor = realStatusDepth == 0 ? statusColor : calculateColor(statusColor, realStatusDepth);
             window.setStatusBarColor(finalStatusColor);
             if (applyNav) {
-                int finalNavColor = navDepth == 0 ? navColor : calculateColor(navColor, navDepth);
+                int realNavDepth = limitDepthOrAlpha(navDepth);
+                int finalNavColor = realNavDepth == 0 ? navColor : calculateColor(navColor, realNavDepth);
                 window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 window.setNavigationBarColor(finalNavColor);
             }
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            int finalStatusColor = statusDepth == 0 ? statusColor : calculateColor(statusColor, statusDepth);
+            int finalStatusColor = realStatusDepth == 0 ? statusColor : calculateColor(statusColor, realStatusDepth);
             ViewGroup decorView = (ViewGroup) window.getDecorView();
             decorView.addView(createStatusBarView(activity, finalStatusColor));
             if (applyNav && navigationBarExist(activity)) {
-                int finalNavColor = navDepth == 0 ? navColor : calculateColor(navColor, navDepth);
+                int realNavDepth = limitDepthOrAlpha(navDepth);
+                int finalNavColor = realNavDepth == 0 ? navColor : calculateColor(navColor, realNavDepth);
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 decorView.addView(createNavBarView(activity, finalNavColor));
             }
@@ -396,6 +427,14 @@ public class UltimateBar {
     }
 
 
+    /**
+     * StatusBar and NavigationBar transparent
+     * @param statusColor StatusBar color
+     * @param statusAlpha StatusBar alpha
+     * @param applyNav apply NavigationBar or no
+     * @param navColor NavigationBar color (applyNav == true)
+     * @param navAlpha NavigationBar alpha (applyNav == true)
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void setTransparentBar(@ColorInt int statusColor, int statusAlpha, boolean applyNav,
                                    @ColorInt int navColor, int navAlpha) {
@@ -405,13 +444,13 @@ public class UltimateBar {
             int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
             int finalStatusColor = statusColor == 0 ? Color.TRANSPARENT :
-                    Color.argb(statusAlpha, Color.red(statusColor),
+                    Color.argb(limitDepthOrAlpha(statusAlpha), Color.red(statusColor),
                             Color.green(statusColor), Color.blue(statusColor));
             window.setStatusBarColor(finalStatusColor);
             if (applyNav) {
                 option = option | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
                 int finalNavColor = navColor == 0 ? Color.TRANSPARENT :
-                        Color.argb(navAlpha, Color.red(navColor),
+                        Color.argb(limitDepthOrAlpha(navAlpha), Color.red(navColor),
                                 Color.green(navColor), Color.blue(navColor));
                 window.setNavigationBarColor(finalNavColor);
             }
@@ -422,13 +461,13 @@ public class UltimateBar {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             ViewGroup decorView = (ViewGroup) window.getDecorView();
             int finalStatusColor = statusColor == 0 ? Color.TRANSPARENT :
-                    Color.argb(statusAlpha, Color.red(statusColor),
+                    Color.argb(limitDepthOrAlpha(statusAlpha), Color.red(statusColor),
                             Color.green(statusColor), Color.blue(statusColor));
             decorView.addView(createStatusBarView(activity, finalStatusColor));
             if (applyNav && navigationBarExist(activity)) {
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
                 int finalNavColor = navColor == 0 ? Color.TRANSPARENT :
-                        Color.argb(navAlpha, Color.red(navColor),
+                        Color.argb(limitDepthOrAlpha(navAlpha), Color.red(navColor),
                                 Color.green(navColor), Color.blue(navColor));
                 decorView.addView(createNavBarView(activity, finalNavColor));
             }
@@ -440,6 +479,7 @@ public class UltimateBar {
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void setColorBarForDrawer(@ColorInt int statusColor, int statusDepth, boolean applyNav,
                                       @ColorInt int navColor, int navDepth) {
+        int realStatusDepth = limitDepthOrAlpha(statusDepth);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = activity.getWindow();
             ViewGroup decorView = (ViewGroup) window.getDecorView();
@@ -448,10 +488,11 @@ public class UltimateBar {
 
             window.setStatusBarColor(Color.TRANSPARENT);
             window.setNavigationBarColor(Color.TRANSPARENT);
-            int finalStatusColor = statusDepth == 0 ? statusColor : calculateColor(statusColor, statusDepth);
+            int finalStatusColor = realStatusDepth == 0 ? statusColor : calculateColor(statusColor, realStatusDepth);
             decorView.addView(createStatusBarView(activity, finalStatusColor), 0);
             if (applyNav && navigationBarExist(activity)) {
-                int finalNavColor = navDepth == 0 ? navColor : calculateColor(navColor, navDepth);
+                int realNavDepth = limitDepthOrAlpha(navDepth);
+                int finalNavColor = realNavDepth == 0 ? navColor : calculateColor(navColor, realNavDepth);
                 decorView.addView(createNavBarView(activity, finalNavColor), 1);
                 option = option | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
             }
@@ -460,39 +501,47 @@ public class UltimateBar {
             Window window = activity.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             ViewGroup decorView = (ViewGroup) window.getDecorView();
-            int finalStatusColor = statusDepth == 0 ? statusColor : calculateColor(statusColor, statusDepth);
+            int finalStatusColor = realStatusDepth == 0 ? statusColor : calculateColor(statusColor, realStatusDepth);
             decorView.addView(createStatusBarView(activity, finalStatusColor), 0);
             if (applyNav && navigationBarExist(activity)) {
+                int realNavDepth = limitDepthOrAlpha(navDepth);
                 window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-                int finalNavColor = navDepth == 0 ? navColor : calculateColor(navColor, navDepth);
+                int finalNavColor = realNavDepth == 0 ? navColor : calculateColor(navColor, realNavDepth);
                 decorView.addView(createNavBarView(activity, finalNavColor), 1);
             }
         }
     }
 
 
-
-
+    private int limitDepthOrAlpha(int depthOrAlpha) {
+        if (depthOrAlpha < 0) {
+            return 0;
+        }
+        if (depthOrAlpha > 255) {
+            return 255;
+        }
+        return depthOrAlpha;
+    }
 
 
     private View createStatusBarView(Context context, @ColorInt int color) {
-        View mStatusBarTintView = new View(context);
+        View statusBarView = new View(context);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams
                 (FrameLayout.LayoutParams.MATCH_PARENT, getStatusBarHeight(context));
         params.gravity = Gravity.TOP;
-        mStatusBarTintView.setLayoutParams(params);
-        mStatusBarTintView.setBackgroundColor(color);
-        return mStatusBarTintView;
+        statusBarView.setLayoutParams(params);
+        statusBarView.setBackgroundColor(color);
+        return statusBarView;
     }
 
     private View createNavBarView(Context context, @ColorInt int color) {
-        View mNavBarTintView = new View(context);
+        View navBarView = new View(context);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams
                 (FrameLayout.LayoutParams.MATCH_PARENT, getNavigationHeight(context));
         params.gravity = Gravity.BOTTOM;
-        mNavBarTintView.setLayoutParams(params);
-        mNavBarTintView.setBackgroundColor(color);
-        return mNavBarTintView;
+        navBarView.setLayoutParams(params);
+        navBarView.setBackgroundColor(color);
+        return navBarView;
     }
 
 

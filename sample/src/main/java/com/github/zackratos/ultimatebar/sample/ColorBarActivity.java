@@ -7,7 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.github.zackratos.ultimatebar.library.UltimateBar;
+import com.github.zackratos.ultimatebar.UltimateBar;
 
 
 public class ColorBarActivity extends AppCompatActivity {
@@ -20,11 +20,11 @@ public class ColorBarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text);
 
         UltimateBar.newColorBuilder()
-                .statusColor(color(R.color.SpringGreen))
-                .statusDepth(50)
-                .applyNav(true)
-                .navColor(color(R.color.DoderBlue))
-                .navDepth(50)
+                .statusColor(color(R.color.SpringGreen))  // 状态栏颜色
+                .statusDepth(50)                          // 状态栏颜色深度
+                .applyNav(true)                           // 是否应用到导航栏
+                .navColor(color(R.color.DoderBlue))       // 导航栏颜色
+                .navDepth(50)                             // 导航栏颜色深度
                 .build(this)
                 .apply();
 

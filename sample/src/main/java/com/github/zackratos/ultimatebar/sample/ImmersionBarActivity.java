@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.github.zackratos.ultimatebar.library.UltimateBar;
+import com.github.zackratos.ultimatebar.UltimateBar;
 
 public class ImmersionBarActivity extends AppCompatActivity {
 
@@ -16,7 +16,7 @@ public class ImmersionBarActivity extends AppCompatActivity {
 //        UltimateBar ultimateBar = new UltimateBar(this);
 //        ultimateBar.setImmersionBar(true);
         UltimateBar.newImmersionBuilder()
-                .applyNav(true)
+                .applyNav(true)         // 是否应用到导航栏
                 .build(this)
                 .apply();
 

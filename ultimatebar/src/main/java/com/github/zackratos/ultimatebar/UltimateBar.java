@@ -1,4 +1,4 @@
-package com.github.zackratos.ultimatebar.library;
+package com.github.zackratos.ultimatebar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -138,78 +138,6 @@ public class UltimateBar {
         setColorBar(statusColor, 0, navColor, 0);
     }
 
-/*    *//**
-     * StatusBar color
-     * @param statusColor StatusBar color
-     * @param statusDepth StatusBar color depth
-     *//*
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setColorStatusBar(@ColorInt int statusColor, int statusDepth) {
-        setColorBar(statusColor, statusDepth, false, Color.BLACK, 255);
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setColorStatusBar(@ColorInt int statusColor) {
-        setColorStatusBar(statusColor, 0);
-    }
-
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setColorBarForDrawer(@ColorInt int statusColor, int statusDepth,
-                                     @ColorInt int navColor, int navDepth) {
-        setColorBarForDrawer(statusColor, statusDepth, true, navColor, navDepth);
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setColorBarForDrawer(@ColorInt int statusColor, @ColorInt int navColor) {
-        setColorBarForDrawer(statusColor, 0, navColor, 0);
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setColorStatusBarForDrawer(@ColorInt int statusColor, int statusDepth) {
-        setColorBarForDrawer(statusColor, statusDepth, false, Color.BLACK, 255);
-    }
-
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setColorStatusBarForDrawer(@ColorInt int statusColor) {
-        setColorStatusBarForDrawer(statusColor, 0);
-    }
-
-    *//**
-     * StatusBar and NavigationBar transparent
-     * @param statusColor StatusBar color
-     * @param statusAlpha StatusBar alpha
-     * @param navColor NavigationBar color
-     * @param navAlpha NavigationBar alpha
-     *//*
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setTransparentBar(@ColorInt int statusColor, int statusAlpha,
-                                  @ColorInt int navColor, int navAlpha) {
-        setTransparentBar(statusColor, statusAlpha, true, navColor, navAlpha);
-    }
-
-    *//**
-     * StatusBar transparent
-     * @param statusColor StatusBar color
-     * @param statusAlpha StatusBar alpha
-     *//*
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setTransparentStatusBar(@ColorInt int statusColor, int statusAlpha) {
-        setTransparentBar(statusColor, statusAlpha, false, Color.BLACK, 255);
-    }
-
-    *//**
-     * StatusBar and NavigationBar immersion
-     * @param applyNav apply NavigationBar
-     *//*
-    @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void setImmersionBar(boolean applyNav) {
-        if (applyNav) {
-            setTransparentBar(Color.TRANSPARENT, 0, Color.TRANSPARENT, 0);
-        } else {
-            setTransparentStatusBar(Color.TRANSPARENT, 0);
-        }
-    }*/
 
     /**
      * StatusBar and NavigationBar hide

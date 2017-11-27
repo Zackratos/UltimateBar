@@ -8,7 +8,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.github.zackratos.ultimatebar.library.UltimateBar;
+import com.github.zackratos.ultimatebar.UltimateBar;
 
 /**
  *
@@ -24,9 +24,11 @@ public class DrawerActivity extends AppCompatActivity {
         int color = ContextCompat.getColor(this, R.color.DeepSkyBlue);
 
         UltimateBar.newDrawerBuilder()
-                .statusColor(color)
-                .applyNav(true)
-                .navColor(color)
+                .statusColor(color)     // 状态栏颜色
+                .statusDepth(0)         // 状态栏颜色深度
+                .applyNav(true)         // 是否应用到导航栏
+                .navColor(color)        // 导航栏颜色
+                .navDepth(0)            // 导航栏颜色深度
                 .build(this)
                 .apply();
 

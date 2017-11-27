@@ -16,7 +16,7 @@
 gradle：
 
 ```xml
-compile 'com.github.zackratos.ultimatebar:ultimatebar:1.2.0'
+compile 'com.github.zackratos.ultimatebar:ultimatebar2:2.0.0'
 ```
 
 ### 1.自定义颜色的状态栏和导航栏
@@ -24,12 +24,16 @@ compile 'com.github.zackratos.ultimatebar:ultimatebar:1.2.0'
 在 onCreate() 方法中：
 
 ```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorBar(statusColor, 100, navColor, 100);
+UltimateBar.newColorBuilder()
+        .statusColor(statusColor)       // 状态栏颜色
+        .statusDepth(50)                // 状态栏颜色深度
+        .applyNav(true)                 // 是否应用到导航栏
+        .navColor(navColor)             // 导航栏颜色
+        .navDepth(50)                   // 导航栏颜色深度
+        .build(this)
+        .apply();
 ```
 
-前两个参数表示状态栏的颜色和深度，后两个参数表示导航栏的颜色和深度，
-深度的范围是 0 - 255,0 表示没有加深，255 表示完全黑色
 
 <br/><br/>
 <img src="Screenshots/KITKAT_COLOR_1.png" width="300px"/>
@@ -41,27 +45,19 @@ ultimateBar.setColorBar(statusColor, 100, navColor, 100);
 如果不需要设置颜色深度：
 
 ```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorBar(statusColor, navColor);
+UltimateBar.newColorBuilder()
+        .statusColor(statusColor)   // 状态栏颜色
+        .applyNav(true)             // 是否应用到导航栏
+        .navColor(navColor)         // 导航栏颜色
+        .build(this)
+        .apply();
 ```
 
-两个参数分别表示状态栏颜色和导航栏颜色
 
 <br/><br/>
 <img src="Screenshots/KITKAT_COLOR_2.png" width="300px"/>
 <img src="Screenshots/LOLLIPOP_COLOR_2.png" width="300px"/>
 
-<br/><br/>
-
-
-如果仅需要设置状态栏的颜色：
-
-```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorsStatusBar(statusColor, 100);
-```
-
-参数分别表示状态栏的颜色和深度
 
 <br/><br/><br/>
 
@@ -71,12 +67,16 @@ ultimateBar.setColorsStatusBar(statusColor, 100);
 在 onCreate() 方法中：
 
 ```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setTransparentBar(Color.BLUE, 100, Color.GREEN, 100);
+UltimateBar.newTransparentBuilder()
+        .statusColor(Color.BLUE)        // 状态栏颜色
+        .statusAlpha(100)               // 状态栏透明度
+        .applyNav(true)                 // 是否应用到导航栏
+        .navColor(Color.GREEN)          // 导航栏颜色
+        .navAlpha(100)                  // 导航栏透明度
+        .build(this)
+        .apply();
 ```
 
-前两个参数表示状态栏的颜色和透明度，后两个参数表示导航栏的颜色和透明度，
-透明度的范围是 0-255,0 表示完全透明，255 表示完全不透明
 
 <br/><br/>
 <img src="Screenshots/KITKAT_TRANSPARENT_1.png" width="300px"/>
@@ -89,11 +89,14 @@ ultimateBar.setTransparentBar(Color.BLUE, 100, Color.GREEN, 100);
 如果仅需要设置状态栏的半透明效果：
 
 ```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setTransparentBar(Color.BLUE, 100);
+UltimateBar.newTransparentBuilder()
+        .statusColor(Color.BLUE)        // 状态栏颜色
+        .statusAlpha(100)               // 状态栏透明度
+        .applyNav(false)                // 是否应用到导航栏
+        .build(this)
+        .apply();
 ```
 
-参数分别表示状态栏的颜色和透明度
 
 <br/><br/><br/>
 
@@ -104,11 +107,12 @@ ultimateBar.setTransparentBar(Color.BLUE, 100);
 在 onCreate() 方法中：<br/><br/>
 
 ```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setImmersionBar(true);
+UltimateBar.newImmersionBuilder()
+        .applyNav(true)         // 是否应用到导航栏
+        .build(this)
+        .apply();
 ```
 
-参数表示是否要设置导航栏沉浸，true 表示导航栏沉浸，false 表示导航栏不沉浸
 
 <br/><br/>
 <img src="Screenshots/KITKAT_IMMERSION.png" width="300px"/>
@@ -127,13 +131,14 @@ ultimateBar.setImmersionBar(true);
 public void onWindowFocusChanged(boolean hasFocus) {
     super.onWindowFocusChanged(hasFocus);
     if (hasFocus) {
-        UltimateBar ultimateBar = new UltimateBar(this);
-        ultimateBar.setHideBar(true);
+        UltimateBar.newHideBuilder()
+                .applyNav(true)     // 是否应用到导航栏
+                .build(this)
+                .apply();
     }
 }
 ```
 
-参数表示是否要隐藏导航栏，true 表示隐藏，false 表示不隐藏
 
 <br/><br/>
 <img src="Screenshots/HIDE_1.png" width="300px"/>
@@ -177,11 +182,16 @@ public void onWindowFocusChanged(boolean hasFocus) {
 然后在 onCreate() 方法中：
 
 ```java
-UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
+UltimateBar.newDrawerBuilder()
+        .statusColor(color)     // 状态栏颜色
+        .statusDepth(0)         // 状态栏颜色深度
+        .applyNav(true)         // 是否应用到导航栏
+        .navColor(color)        // 导航栏颜色
+        .navDepth(0)            // 导航栏颜色深度
+        .build(this)
+        .apply();
 ```
 
-参数的意义和前面的设置状态栏和导航栏颜色的一样
 
 <br/><br/>
 <img src="Screenshots/KITKAT_DRAWER.png" width=300px/>
@@ -194,6 +204,10 @@ ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
 
 
 ## 更新日志
+
+### v2.0.0 (2017.11.27)
+1.采用 Builder 模式重构代码；<br/>
+2.修复 DrawerLayout 中使用自定义颜色模式时，不应用到导航栏时导航栏颜色透明的 bug。
 
 ### v1.2.0 (2017.11.27)
 1.修改包名；<br/>

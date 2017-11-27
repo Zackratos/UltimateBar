@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.github.zackratos.ultimatebar.library.UltimateBar;
+import com.github.zackratos.ultimatebar.UltimateBar;
 
 public class HideBarActivity1 extends AppCompatActivity {
 
@@ -24,9 +24,10 @@ public class HideBarActivity1 extends AppCompatActivity {
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-//            UltimateBar ultimateBar = new UltimateBar(this);
-//            ultimateBar.setHideBar(true);
-            UltimateBar.newHideBuilder().applyNav(true).build(this).apply();
+            UltimateBar.newHideBuilder()
+                    .applyNav(true)     // 是否应用到导航栏
+                    .build(this)
+                    .apply();
         }
     }
 

@@ -21,10 +21,14 @@ public class DrawerActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_drawer);
-
-        UltimateBar ultimateBar = new UltimateBar(this);
         int color = ContextCompat.getColor(this, R.color.DeepSkyBlue);
-        ultimateBar.setColorBarForDrawer(color, color);
+
+        UltimateBar.newDrawerBuilder()
+                .statusColor(color)
+                .applyNav(true)
+                .navColor(color)
+                .build(this)
+                .apply();
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

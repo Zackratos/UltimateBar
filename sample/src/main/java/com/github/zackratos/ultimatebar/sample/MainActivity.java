@@ -22,11 +22,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        @ColorInt
+        int color = ContextCompat.getColor(this, R.color.DeepSkyBlue);
 
-        UltimateBar ultimateBar = new UltimateBar(this);
+        UltimateBar.newColorBuilder()
+                .statusColor(color)
+                .statusDepth(0)
+                .applyNav(true)
+                .navColor(color)
+                .navDepth(0)
+                .build(this)
+                .apply();
 
-        @ColorInt int color = ContextCompat.getColor(this, R.color.DeepSkyBlue);
-        ultimateBar.setColorBar(color, color);
 
         Toolbar tb = (Toolbar) findViewById(R.id.toolbar);
         tb.setBackgroundColor(ContextCompat.getColor(this, R.color.DeepSkyBlue));
@@ -84,9 +91,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-/*    @Override
-    protected void initBar() {
-        setColorBar(ContextCompat.getColor(this, R.color.DeepSkyBlue));
-    }*/
 }

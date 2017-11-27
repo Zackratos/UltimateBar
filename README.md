@@ -16,7 +16,7 @@
 gradle：
 
 ```xml
-compile 'org.zackratos:ultimatebar:1.1.2'
+compile 'com.github.zackratos.ultimatebar:ultimatebar:1.2.0'
 ```
 
 ### 1.自定义颜色的状态栏和导航栏
@@ -194,6 +194,10 @@ ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
 
 
 ## 更新日志
+
+### v1.2.0 (2017.11.27)
+1.修改包名；<br/>
+2.替换部分图片。
 
 ### v1.1.2 (2017.11.22)
 1.重命名仅设置状态栏半透明的方法名为 setTransparentStatusBar，之前为 setTransparentBar；<br/>

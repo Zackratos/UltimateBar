@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        applicationId "org.zackratos.ultimatesample"
+        applicationId "com.github.zackratos.ultimatebar.sample"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -23,7 +23,6 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile project(':ultimatebar')
+    compile project(':Library')
     compile 'com.android.support:design:26.+'
-//    compile 'org.zackratos:UltimateBar:1.0.1'
 }

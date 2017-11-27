@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.zackratos.ultimatesample">
+    package="com.github.zackratos.ultimatebar.sample">
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name="org.zackratos.ultimatesample.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,17 +16,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="org.zackratos.ultimatesample.ColorBarActivity"
+            android:name=".ColorBarActivity"
             android:label="ColorBar" />
-        <activity android:name="org.zackratos.ultimatesample.TransparentBarActivity1"
+        <activity android:name=".TransparentBarActivity1"
             android:label="transparent"/>
-        <activity android:name="org.zackratos.ultimatesample.HideBarActivity1"
-            android:label="hint"/>
-        <activity android:name="org.zackratos.ultimatesample.ImmersionBarActivity"
+        <activity android:name=".HideBarActivity1"
+            android:label="hide"/>
+        <activity android:name=".ImmersionBarActivity"
             android:label="immersion"/>
-        <activity android:name="org.zackratos.ultimatesample.HideBarActivity2"
-            android:label="hint"/>
-        <activity android:name="org.zackratos.ultimatesample.TransparentBarActivity2"
+        <activity android:name=".HideBarActivity2"
+            android:label="hide"/>
+        <activity android:name=".TransparentBarActivity2"
             android:label="transparent"/>
         <activity android:name=".DrawerActivity"
             android:label="DrawerColorBar"/>

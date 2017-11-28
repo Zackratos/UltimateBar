@@ -30,9 +30,9 @@ dependencies {
 //添加
 publish {
     userOrg = 'kratos'//bintray.com用户名
-    groupId = 'com.github.zackratos.ultimatebar'//jcenter上的路径
+    groupId = 'org.zackratos'//jcenter上的路径
     artifactId = 'ultimatebar'//项目名称
-    publishVersion = '1.2.0'//版本号
+    publishVersion = '1.1.3'//版本号
     desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
     website = 'https://github.com/Zackratos/UltimateBar'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }

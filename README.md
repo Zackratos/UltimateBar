@@ -1,6 +1,9 @@
 # UltimateBar
 透明状态栏导航栏、沉浸式状态栏导航栏的终极解决方案
 
+## version 2.0
+
+建议使用 2.0 版 [ultimatebar2](https://github.com/Zackratos/UltimateBar/tree/ultimatebar2)
 
 ## 特点：
 
@@ -16,7 +19,7 @@
 gradle：
 
 ```xml
-compile 'com.github.zackratos.ultimatebar:ultimatebar:1.2.0'
+compile 'org.zackratos:ultimatebar:1.1.3'
 ```
 
 ### 1.自定义颜色的状态栏和导航栏
@@ -90,7 +93,7 @@ ultimateBar.setTransparentBar(Color.BLUE, 100, Color.GREEN, 100);
 
 ```java
 UltimateBar ultimateBar = new UltimateBar(this);
-ultimateBar.setTransparentBar(Color.BLUE, 100);
+ultimateBar.setTransparentStatusBar(Color.BLUE, 100);
 ```
 
 参数分别表示状态栏的颜色和透明度
@@ -195,9 +198,10 @@ ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
 
 ## 更新日志
 
-### v1.2.0 (2017.11.27)
+### v1.1.3 (2017.11.28)
 1.修改包名；<br/>
-2.替换部分图片。
+2.替换部分图片；<br/>
+3.修复 DrawerLayout 中使用自定义颜色模式时，不应用到导航栏时导航栏颜色透明的 bug。
 
 ### v1.1.2 (2017.11.22)
 1.重命名仅设置状态栏半透明的方法名为 setTransparentStatusBar，之前为 setTransparentBar；<br/>
@@ -235,7 +239,6 @@ ultimateBar.setColorBarForDrawer(statusColor, 0, navColor, 0);
 沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/>
 2.可以自定义状态栏和导航栏的颜色和透明度；<br/>
 3.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/>
-
 
 
 ## License

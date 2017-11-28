@@ -1,4 +1,4 @@
-package com.github.zackratos.ultimatebar.library;
+package com.github.zackratos.ultimatebar;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

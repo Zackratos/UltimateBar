@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-import com.github.zackratos.ultimatebar.library.UltimateBar;
+import com.github.zackratos.ultimatebar.UltimateBar;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {

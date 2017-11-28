@@ -1,4 +1,4 @@
-package com.github.zackratos.ultimatebar.library;
+package com.github.zackratos.ultimatebar;
 
 import org.junit.Test;
 

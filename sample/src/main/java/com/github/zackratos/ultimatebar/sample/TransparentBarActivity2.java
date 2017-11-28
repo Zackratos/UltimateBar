@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.github.zackratos.ultimatebar.library.UltimateBar;
+import com.github.zackratos.ultimatebar.UltimateBar;
 
 public class TransparentBarActivity2 extends AppCompatActivity {
 

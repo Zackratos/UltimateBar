@@ -6,9 +6,9 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <include
@@ -37,13 +37,14 @@
 
 
     <FrameLayout
+        android:id="@+id/drawer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="left">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/yurisa_1"
+            android:src="@drawable/yurisa_5"
             android:scaleType="centerCrop"/>
     </FrameLayout>
 

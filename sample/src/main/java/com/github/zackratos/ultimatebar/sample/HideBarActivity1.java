@@ -17,17 +17,21 @@ public class HideBarActivity1 extends AppCompatActivity {
 
         toolbar = findViewById(R.id.include_toolbar);
         toolbar.setVisibility(View.GONE);
-
+        findViewById(R.id.theme_parent).setVisibility(View.GONE);
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
         if (hasFocus) {
-            UltimateBar.newHideBuilder()
-                    .applyNav(true)     // 是否应用到导航栏
-                    .build(this)
-                    .apply();
+//            UltimateBar.newHideBuilder()
+//                    .applyNav(true)     // 是否应用到导航栏
+//                    .build(this)
+//                    .apply();
+            UltimateBar.Companion.with(this)
+                    .applyNavigation(true)
+                    .create()
+                    .hideBar();
         }
     }
 

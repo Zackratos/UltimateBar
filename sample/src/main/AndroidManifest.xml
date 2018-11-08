@@ -16,8 +16,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ColorBarActivity"
-            android:label="ColorBar" />
+            android:name=".DrawableBarActivity"
+            android:label="DrawableBar" />
         <activity android:name=".TransparentBarActivity1"
             android:label="transparent"/>
         <activity android:name=".HideBarActivity1"
@@ -29,7 +29,8 @@
         <activity android:name=".TransparentBarActivity2"
             android:label="transparent"/>
         <activity android:name=".DrawerActivity"
-            android:label="DrawerColorBar"/>
+            android:label="DrawerDrawableBar"/>
+        <activity android:name=".FragmentActivity" />
     </application>
 
 </manifest>

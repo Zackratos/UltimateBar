@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="org.zackratos.ultimatesample.com.github.zackratos.ultimatebar.ultimatesample.MainActivity">
+    android:orientation="vertical">
 
     <include
         layout="@layout/toolbar"/>
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -19,10 +18,10 @@
             android:padding="16dp"
             android:orientation="vertical">
             <Button
-                android:id="@+id/color_bar"
+                android:id="@+id/drawable_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Color_Bar"/>
+                android:text="Drawable_Bar"/>
             <Button
                 android:id="@+id/immersion_bar"
                 android:layout_width="match_parent"
@@ -57,8 +56,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="drawer_color_bar"/>
+
+            <Button
+                android:id="@+id/fragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="fragment"/>
+
+
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </LinearLayout>

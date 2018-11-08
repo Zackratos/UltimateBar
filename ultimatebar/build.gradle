@@ -1,15 +1,26 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'//添加
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.8.1'
+    }
+}
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 28
+//    buildToolsVersion "26.0.2"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
-        versionCode 8
-        versionName "1.2.0"
+        targetSdkVersion 28
+        versionCode 9
+        versionName "3.0.0"
     }
     buildTypes {
         release {
@@ -20,18 +31,19 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:support-annotations:26.+'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
 }
-
 
 //添加
 publish {
-    userOrg = 'kratos'//bintray.com用户名
+    userOrg = 'zackratos'//bintray.com用户名
     groupId = 'com.github.zackratos.ultimatebar'//jcenter上的路径
-    artifactId = 'ultimatebar2'//项目名称
-    publishVersion = '2.0.0'//版本号
+    artifactId = 'ultimatebar3'//项目名称
+    publishVersion = '3.0.0'//版本号
     desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
     website = 'https://github.com/Zackratos/UltimateBar'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }

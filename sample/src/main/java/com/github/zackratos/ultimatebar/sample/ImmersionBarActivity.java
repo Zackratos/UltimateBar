@@ -12,15 +12,18 @@ public class ImmersionBarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image);
+//        UltimateBar.newImmersionBuilder()
+//                .applyNav(true)         // 是否应用到导航栏
+//                .build(this)
+//                .apply();
 
-//        UltimateBar ultimateBar = new UltimateBar(this);
-//        ultimateBar.setImmersionBar(true);
-        UltimateBar.newImmersionBuilder()
-                .applyNav(true)         // 是否应用到导航栏
-                .build(this)
-                .apply();
+//        ultimateBar3.setStatusBarImmersion(false);
+        UltimateBar.Companion.with(this)
+                .applyNavigation(true)
+                .create()
+                .immersionBar();
 
-        ((ImageView) findViewById(R.id.image_view)).setImageResource(R.drawable.yurisa_1);
+        ((ImageView) findViewById(R.id.image_view)).setImageResource(R.drawable.yurisa_5);
     }
 
 /*    @Override

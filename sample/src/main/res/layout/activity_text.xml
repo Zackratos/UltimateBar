@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.github.zackratos.ultimatebar.sample.ColorBarActivity">
+    tools:context="com.github.zackratos.ultimatebar.sample.DrawableBarActivity">
 
     <include
         android:id="@+id/include_toolbar"
@@ -13,6 +13,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/include_toolbar"
         android:background="#FFFFFF">
 
         <TextView
@@ -20,4 +21,31 @@
             android:layout_height="wrap_content"
             android:text="@string/text_content"/>
     </android.support.v4.widget.NestedScrollView>
-</LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/theme_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/theme_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="theme_1"/>
+        <Button
+            android:id="@+id/theme_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="theme_2"/>
+
+        <Button
+            android:id="@+id/theme_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="theme_3"/>
+    </LinearLayout>
+
+
+</RelativeLayout>

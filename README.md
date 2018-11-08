@@ -4,125 +4,97 @@
 
 ## 特点：
 
-1.四种效果，自定义颜色的状态栏和导航栏，半透明状态栏和导航栏，沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/>
-2.可以自定义状态栏和导航栏的颜色和透明度；<br/>
-3.状态栏和导航栏可以分开设置，分别设置不同的颜色和透明度；<br/>
+1.四种效果，自定义状态栏和导航栏的 drawable，状态栏和导航栏半透明，沉浸式状态栏和导航栏，隐藏状态栏和导航栏；<br/>
+2.可以自定义状态栏和导航栏的 drawable；<br/>
+3.状态栏和导航栏可以分开设置，分别设置不同的 drawable；<br/>
 4.可以只设置状态栏或者状态栏和导航栏同时设置；<br/>
-5.针对 DrawerLayout 的自定义颜色的状态栏和导航栏做了专门的适配；<br/>
-6.KITKAT(Android 4.4)和LOLLIPOP(Android 5.0)上显示效果高度统一。<br/>
+5.针对 DrawerLayout 做了专门的适配；<br/>
+6.KITKAT(Android 4.4) 和 LOLLIPOP(Android 5.0) 上显示效果高度统一；<br/>
+7.状态栏和导航栏可以设置灰色模式;<br/>
+8.同一种效果可以多次设置。<br/>
 
 ## 使用方法：
 
 gradle：
 
 ```xml
-compile 'com.github.zackratos.ultimatebar:ultimatebar2:2.0.0'
+implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.0.0'
 ```
 
-### 1.自定义颜色的状态栏和导航栏
+### 1. 自定义状态栏和导航栏的 drawable
 
 在 onCreate() 方法中：
 
 ```java
-UltimateBar.newColorBuilder()
-        .statusColor(statusColor)       // 状态栏颜色
-        .statusDepth(50)                // 状态栏颜色深度
-        .applyNav(true)                 // 是否应用到导航栏
-        .navColor(navColor)             // 导航栏颜色
-        .navDepth(50)                   // 导航栏颜色深度
-        .build(this)
-        .apply();
+UltimateBar.Companion.with(this)
+        .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+        .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .applyNavigation(true)              // 应用到导航栏，默认 flase
+        .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
+        .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .create()
+        .drawableBar();
 ```
 
 
 <br/><br/>
-<img src="Screenshots/KITKAT_COLOR_1.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_COLOR_1.png" width="300px"/>
-
-<br/><br/>
+<img src="Screenshots/drawable_kitkat.png" width="300px"/>
+<img src="Screenshots/drawable_lollipop.png" width="300px"/>
 
 
-如果不需要设置颜色深度：
 
-```java
-UltimateBar.newColorBuilder()
-        .statusColor(statusColor)   // 状态栏颜色
-        .applyNav(true)             // 是否应用到导航栏
-        .navColor(navColor)         // 导航栏颜色
-        .build(this)
-        .apply();
-```
-
-
-<br/><br/>
-<img src="Screenshots/KITKAT_COLOR_2.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_COLOR_2.png" width="300px"/>
 
 
 <br/><br/><br/>
 
 
-### 2.半透明状态栏和导航栏
+### 2. 半透明状态栏和导航栏
 
 在 onCreate() 方法中：
 
 ```java
-UltimateBar.newTransparentBuilder()
-        .statusColor(Color.BLUE)        // 状态栏颜色
-        .statusAlpha(100)               // 状态栏透明度
-        .applyNav(true)                 // 是否应用到导航栏
-        .navColor(Color.GREEN)          // 导航栏颜色
-        .navAlpha(100)                  // 导航栏透明度
-        .build(this)
-        .apply();
+UltimateBar.Companion.with(this)
+        .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+        .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .applyNavigation(true)              // 应用到导航栏，默认 flase
+        .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
+        .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .create()
+        .transparentBar();
 ```
 
 
 <br/><br/>
-<img src="Screenshots/KITKAT_TRANSPARENT_1.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_TRANSPARENT_1.png" width="300px"/>
-<img src="Screenshots/KITKAT_TRANSPARENT_2.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_TRANSPARENT_2.png" width="300px"/>
-
-<br/><br/><br/>
-
-如果仅需要设置状态栏的半透明效果：
-
-```java
-UltimateBar.newTransparentBuilder()
-        .statusColor(Color.BLUE)        // 状态栏颜色
-        .statusAlpha(100)               // 状态栏透明度
-        .applyNav(false)                // 是否应用到导航栏
-        .build(this)
-        .apply();
-```
-
+<img src="Screenshots/transparent_kitkat.png" width="300px"/>
+<img src="Screenshots/transparent_lollipop.png" width="300px"/>
 
 <br/><br/><br/>
 
 
 
-### 3.沉浸式状态栏和导航栏：
+### 3. 沉浸式状态栏和导航栏：
 
 在 onCreate() 方法中：<br/><br/>
 
 ```java
-UltimateBar.newImmersionBuilder()
-        .applyNav(true)         // 是否应用到导航栏
-        .build(this)
-        .apply();
+UltimateBar.Companion.with(this)
+        .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+        .applyNavigation(true)              // 应用到导航栏，默认 flase
+        .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
+        .create()
+        .immersionBar();
 ```
 
 
 <br/><br/>
-<img src="Screenshots/KITKAT_IMMERSION.png" width="300px"/>
-<img src="Screenshots/LOLLIPOP_IMMERSION.png" width="300px"/>
+<img src="Screenshots/immersion_kitkat.png" width="300px"/>
+<img src="Screenshots/immersion_lollipop.png" width="300px"/>
 
 
 <br/><br/><br/>
 
 
-### 4.隐藏状态栏和导航栏：
+### 4. 隐藏状态栏和导航栏：
 
 在 onWindowFocusChanged() 方法中：
 
@@ -131,79 +103,76 @@ UltimateBar.newImmersionBuilder()
 public void onWindowFocusChanged(boolean hasFocus) {
     super.onWindowFocusChanged(hasFocus);
     if (hasFocus) {
-        UltimateBar.newHideBuilder()
-                .applyNav(true)     // 是否应用到导航栏
-                .build(this)
-                .apply();
+        UltimateBar.Companion.with(this)
+                .applyNavigation(true)      // 是否应用到导航栏
+                .create()
+                .hideBar();
     }
 }
 ```
 
 
 <br/><br/>
-<img src="Screenshots/HIDE_1.png" width="300px"/>
-<img src="Screenshots/HIDE_2.png" width="300px"/>
-
+<img src="Screenshots/hide.png" width="300px"/>
 <br/><br/><br/>
 
 
-### 5.在 DrawerLayout 中设置自定义颜色的状态栏和导航栏：
+### 5. 在 DrawerLayout 中设置自定义 drawable 的状态栏和导航栏：
 
-首先需要设置 DrawerLayout 下面的主局部中添加 android:fitsSystemWindows="true"：
-
-```xml
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="false">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:fitsSystemWindows="true">
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/SpringGreen"
-        android:layout_gravity="left"
-        android:fitsSystemWindows="false"/>
-
-</android.support.v4.widget.DrawerLayout>
-```
-
-注意是 DrawerLayout 下面的主布局，DrawerLayout 本身和抽屉布局都不能添加。
-
-然后在 onCreate() 方法中：
+在 onCreate() 方法中：
 
 ```java
-UltimateBar.newDrawerBuilder()
-        .statusColor(color)     // 状态栏颜色
-        .statusDepth(0)         // 状态栏颜色深度
-        .applyNav(true)         // 是否应用到导航栏
-        .navColor(color)        // 导航栏颜色
-        .navDepth(0)            // 导航栏颜色深度
-        .build(this)
-        .apply();
+UltimateBar.Companion.with(this)
+        .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+        .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .applyNavigation(true)              // 应用到导航栏，默认 flase
+        .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
+        .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .create()
+        .drawableBarDrawer(drawerLayout,    // DrawerLayout
+                content,                    // DrawerLayout 的主布局 View
+                drawer);                    // DrawerLayout 的抽屉布局 View
 ```
 
 
 <br/><br/>
-<img src="Screenshots/KITKAT_DRAWER.png" width=300px/>
-<img src="Screenshots/LOLLIPOP_DRAWER.png" width=300px/>
+<img src="Screenshots/drawer_kitkat.png" width=300px/>
+<img src="Screenshots/drawer_lollipop.png" width=300px/>
 
 
 <br/><br/><br/>
 
+### 6. 在 Fragment 中使用
+若要在 Fragment 中使用，可以先设置 Fragment 所在的 Activity 沉浸，然后再设置 Fragment,
+可以参考 demo 中的写法。
 
+<br/><br/><br/>
+
+### 7. kotlin 中的使用
+若你的 Activity 是 kotlin 语言，可以直接调用 with() 方法生成 UltimateBar 对象，然后配置参数
+```kotlin
+with().statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+        .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .applyNavigation(true)              // 应用到导航栏，默认 flase
+        .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
+        .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .create()
+        .drawableBar();
+```
+
+<br/><br/><br/>
+<!--<img src="Screenshots/drawable_gif.gif" width=300px/>-->
+<!--<img src="Screenshots/transparent_fig.gif" width=300px/>-->
+<!--<br/><br/><br/>-->
 
 
 ## 更新日志
+
+### v3.0.0 (2018.11.07)
+1.使用 kotlin 语言重构；<br/>
+2.删除无用的透明度和颜色深度，直接设置 drawable；<br/>
+3.增加灰色模式；<br/>
+4.同一种效果可以进行多次设置。
 
 ### v2.0.0 (2017.11.27)
 1.采用 Builder 模式重构代码；<br/>

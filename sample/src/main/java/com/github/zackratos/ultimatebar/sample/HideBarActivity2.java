@@ -23,7 +23,11 @@ public class HideBarActivity2 extends AppCompatActivity {
         if (hasFocus) {
 //            UltimateBar ultimateBar = new UltimateBar(this);
 //            ultimateBar.setHideBar(true);
-            UltimateBar.newHideBuilder().applyNav(false).build(this).apply();
+//            UltimateBar.newHideBuilder().applyNav(false).build(this).apply();
+            UltimateBar.Companion.with(this)
+                    .applyNavigation(true)
+                    .create()
+                    .hideBar();
         }
     }
 

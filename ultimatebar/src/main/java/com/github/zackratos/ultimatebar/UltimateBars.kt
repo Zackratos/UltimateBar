@@ -10,4 +10,4 @@ import android.app.Activity
  *  @Time:    下午12:05
  *  @Email:   zhangwenchao@xiangwushuo.com
  */
-inline fun Activity.with(): UltimateBar.Builder = UltimateBar.with(this)
+inline fun Activity.ultimateBarBuilder(): UltimateBar.Builder = UltimateBar.with(this)

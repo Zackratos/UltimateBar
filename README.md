@@ -18,7 +18,7 @@
 gradle：
 
 ```xml
-implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.0.0'
+implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.0.1'
 ```
 
 ### 1. 自定义状态栏和导航栏的 drawable
@@ -151,7 +151,7 @@ UltimateBar.Companion.with(this)
 ### 7. kotlin 中的使用
 若你的 Activity 是 kotlin 语言，可以直接调用 with() 方法生成 UltimateBar 对象，然后配置参数
 ```kotlin
-with().statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+ultimateBarBuilder().statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
         .statusDrawable(drawable)           // 状态栏背景，默认 null
         .applyNavigation(true)              // 应用到导航栏，默认 flase
         .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
@@ -167,6 +167,11 @@ with().statusDark(false)                  // 状态栏灰色模式(Android 6.0+)
 
 
 ## 更新日志
+
+### v3.0.1 (2018.11.14)
+1.将 kotlin 中对 Activity 扩展的方法重命名为 ultimateBarBuilder；<br/>
+2.优化移除导航栏 View 的方法；<br/>
+3.依赖的 v4 包版本降为 27（为了降低接入标准）。
 
 ### v3.0.0 (2018.11.07)
 1.使用 kotlin 语言重构；<br/>

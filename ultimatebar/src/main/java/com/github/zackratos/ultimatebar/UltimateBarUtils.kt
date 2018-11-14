@@ -21,7 +21,7 @@ import android.widget.FrameLayout
  *  @Time:    下午7:04
  *  @Email:   zhangwenchao@xiangwushuo.com
  */
-internal object UltimateBarUtils {
+object UltimateBarUtils {
 
     /**
      * 给状态栏和导航栏设置背景
@@ -32,7 +32,7 @@ internal object UltimateBarUtils {
      * @param navigationDrawable 导航栏背景
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    fun setBarDrawable(activity: Activity,
+    internal fun setBarDrawable(activity: Activity,
                        statusDark: Boolean = false,
                        statusDrawable: Drawable? = null,
                        applyNavigation: Boolean = false,
@@ -50,7 +50,7 @@ internal object UltimateBarUtils {
      * @param navigationDrawable 导航栏背景
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    fun setBarTransparent(activity: Activity,
+    internal fun setBarTransparent(activity: Activity,
                           statusDark: Boolean = false,
                           statusDrawable: Drawable? = null,
                           applyNavigation: Boolean = false,
@@ -66,7 +66,7 @@ internal object UltimateBarUtils {
      * @param navigationDark 导航栏灰色模式
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    fun setBarImmersion(activity: Activity,
+    internal fun setBarImmersion(activity: Activity,
                         statusDark: Boolean = false,
                         applyNavigation: Boolean = false,
                         navigationDark: Boolean = false) {
@@ -78,7 +78,7 @@ internal object UltimateBarUtils {
      * @param applyNavigation 是否应用到导航栏
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    fun setBarHide(activity: Activity, applyNavigation: Boolean = false) {
+    internal fun setBarHide(activity: Activity, applyNavigation: Boolean = false) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val decorView = activity.window.decorView
             var option = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -104,7 +104,7 @@ internal object UltimateBarUtils {
      * @param navigationDrawable 导航栏背景
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    fun setBarDrawableDrawer(activity: Activity,
+    internal fun setBarDrawableDrawer(activity: Activity,
                              drawerLayout: DrawerLayout,
                              content: View,
                              drawer: View,
@@ -162,7 +162,8 @@ internal object UltimateBarUtils {
                     }
                     else -> {
                         window.navigationBarColor = Color.BLACK
-                        setNavigationBarView(activity, decorView, lastIndex, null)
+//                        setNavigationBarView(activity, decorView, lastIndex, null)
+                        removeNavigationBarView(decorView)
                     }
                 }
                 decorView.systemUiVisibility = option
@@ -187,7 +188,8 @@ internal object UltimateBarUtils {
                         if (winParams.flags and WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION != 0) {
                             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
                         }
-                        setNavigationBarView(activity, decorView, lastIndex, null)
+//                        setNavigationBarView(activity, decorView, lastIndex, null)
+                        removeNavigationBarView(decorView)
                     }
                 }
             }
@@ -196,7 +198,7 @@ internal object UltimateBarUtils {
 
 
     // 导航栏是否存在
-    private fun navigationBarExist(activity: Activity): Boolean {
+    fun navigationBarExist(activity: Activity): Boolean {
         val windowManager = activity.windowManager
         val d = windowManager.defaultDisplay
 
@@ -218,12 +220,12 @@ internal object UltimateBarUtils {
     }
 
     // 状态栏高度
-    private fun getStatusBarHeight(context: Context): Int {
+    fun getStatusBarHeight(context: Context): Int {
         return getBarHeight(context, "status_bar_height")
     }
 
     // 导航栏高度
-    private fun getNavigationBarHeight(context: Context): Int {
+    fun getNavigationBarHeight(context: Context): Int {
         return getBarHeight(context, "navigation_bar_height")
     }
 
@@ -274,6 +276,11 @@ internal object UltimateBarUtils {
         }
     }
 
+    private fun removeNavigationBarView(decorView: ViewGroup) {
+        val navigationBarView: View? = decorView.findViewWithTag("navigation_bar")
+        if (navigationBarView != null) decorView.removeView(navigationBarView)
+    }
+
 
     private fun createStatusBarView(context: Context, background: Drawable?): View {
         val statusBarView = View(context)
@@ -281,7 +288,6 @@ internal object UltimateBarUtils {
         params.gravity = Gravity.TOP
         statusBarView.layoutParams = params
         statusBarView.setBackgroundDrawable(background)
-        statusBarView.id = R.id.status_bar_view
         return statusBarView
     }
 
@@ -292,7 +298,6 @@ internal object UltimateBarUtils {
         params.gravity = Gravity.BOTTOM
         navBarView.layoutParams = params
         navBarView.setBackgroundDrawable(background)
-        navBarView.id = R.id.navigation_bar_view
         return navBarView
     }
 

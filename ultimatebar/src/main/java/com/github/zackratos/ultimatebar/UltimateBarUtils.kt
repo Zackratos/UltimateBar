@@ -27,50 +27,65 @@ object UltimateBarUtils {
      * 给状态栏和导航栏设置背景
      * @param statusDark 状态栏灰色模式
      * @param statusDrawable 状态栏背景
+     * @param statusDrawable2 Android 6.0 以下状态栏灰色模式时状态栏背景
      * @param applyNavigation 是否应用到导航栏
      * @param navigationDark 导航栏灰色模式
      * @param navigationDrawable 导航栏背景
+     * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarDrawable(activity: Activity,
-                       statusDark: Boolean = false,
-                       statusDrawable: Drawable? = null,
-                       applyNavigation: Boolean = false,
-                       navigationDark: Boolean = false,
-                       navigationDrawable: Drawable? = null) {
-        setBar(activity, statusDark, statusDrawable, applyNavigation, navigationDark, navigationDrawable, true)
+                                statusDark: Boolean = false,
+                                statusDrawable: Drawable? = null,
+                                statusDrawable2: Drawable? = statusDrawable,
+                                applyNavigation: Boolean = false,
+                                navigationDark: Boolean = false,
+                                navigationDrawable: Drawable? = null,
+                                navigationDrawable2: Drawable? = navigationDrawable) {
+        setBar(activity, statusDark, statusDrawable, statusDrawable2, applyNavigation,
+                navigationDark, navigationDrawable, navigationDrawable2, true)
     }
 
     /**
      * 半透明状态栏和导航栏
      * @param statusDark 状态栏灰色模式
      * @param statusDrawable 状态栏背景
+     * @param statusDrawable2 Android 6.0 以下状态栏灰色模式时状态栏颜色
      * @param applyNavigation 是否应用到导航栏
      * @param navigationDark 导航栏灰色模式
      * @param navigationDrawable 导航栏背景
+     * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarTransparent(activity: Activity,
-                          statusDark: Boolean = false,
-                          statusDrawable: Drawable? = null,
-                          applyNavigation: Boolean = false,
-                          navigationDark: Boolean = false,
-                          navigationDrawable: Drawable? = null) {
-        setBar(activity, statusDark, statusDrawable, applyNavigation, navigationDark, navigationDrawable, false, true)
+                                   statusDark: Boolean = false,
+                                   statusDrawable: Drawable? = null,
+                                   statusDrawable2: Drawable? = statusDrawable,
+                                   applyNavigation: Boolean = false,
+                                   navigationDark: Boolean = false,
+                                   navigationDrawable: Drawable? = null,
+                                   navigationDrawable2: Drawable? = navigationDrawable) {
+        setBar(activity, statusDark, statusDrawable, statusDrawable2, applyNavigation, navigationDark,
+                navigationDrawable, navigationDrawable2, false, true)
     }
 
     /**
      * 状态栏和导航栏沉浸
      * @param statusDark 状态栏灰色模式
+     * @param statusDrawable2 Android 6.0 以下状态栏灰色模式时状态栏颜色
      * @param applyNavigation 是否应用到导航栏
      * @param navigationDark 导航栏灰色模式
+     * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarImmersion(activity: Activity,
-                        statusDark: Boolean = false,
-                        applyNavigation: Boolean = false,
-                        navigationDark: Boolean = false) {
-        setBarTransparent(activity, statusDark, null, applyNavigation, navigationDark, null)
+                                 statusDark: Boolean = false,
+                                 statusDrawable2: Drawable? = null,
+                                 applyNavigation: Boolean = false,
+                                 navigationDark: Boolean = false,
+                                 navigationDrawable2: Drawable? = null) {
+        setBarTransparent(activity, statusDark, null, statusDrawable2,
+                applyNavigation, navigationDark, null, navigationDrawable2)
     }
 
     /**
@@ -99,33 +114,40 @@ object UltimateBarUtils {
      * @param drawer DrawerLayout 中的抽屉布局 View
      * @param statusDark 状态栏灰色模式
      * @param statusDrawable 状态栏背景
+     * @param statusDrawable2 Android 6.0 以下状态栏灰色模式时状态栏颜色
      * @param applyNavigation 是否应用到导航栏
      * @param navigationDark 导航栏灰色模式
      * @param navigationDrawable 导航栏背景
+     * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarDrawableDrawer(activity: Activity,
-                             drawerLayout: DrawerLayout,
-                             content: View,
-                             drawer: View,
-                             statusDark: Boolean = false,
-                             statusDrawable: Drawable? = null,
-                             applyNavigation: Boolean = false,
-                             navigationDark: Boolean = false,
-                             navigationDrawable: Drawable? = null) {
+                                      drawerLayout: DrawerLayout,
+                                      content: View,
+                                      drawer: View,
+                                      statusDark: Boolean = false,
+                                      statusDrawable: Drawable? = null,
+                                      statusDrawable2: Drawable? = statusDrawable,
+                                      applyNavigation: Boolean = false,
+                                      navigationDark: Boolean = false,
+                                      navigationDrawable: Drawable? = null,
+                                      navigationDrawable2: Drawable? = navigationDrawable) {
         setRootView(drawerLayout, false)
         setRootView(content, true)
         setRootView(drawer, false)
-        setBar(activity, statusDark, statusDrawable, applyNavigation, navigationDark, navigationDrawable, false)
+        setBar(activity, statusDark, statusDrawable, statusDrawable2, applyNavigation,
+                navigationDark, navigationDrawable, navigationDrawable2, false)
     }
 
     /**
      * 核心方法
      * @param statusDark 状态栏灰色模式
      * @param statusDrawable 状态栏背景
+     * @param statusDrawable2 Android 6.0 以下状态栏灰色模式时状态栏颜色
      * @param applyNavigation 是否应用到导航栏
      * @param navigationDark 导航栏灰色模式
      * @param navigationDrawable 导航栏背景
+     * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏颜色
      * @param fitsSystemWindows 跟布局是否设置 fitsSystemWindows
      * @param lastIndex 状态栏和导航栏 view 是否加在 decorView 的最后位置
      */
@@ -133,36 +155,62 @@ object UltimateBarUtils {
     private fun setBar(activity: Activity,
                        statusDark: Boolean = false,
                        statusDrawable: Drawable? = null,
+                       statusDrawable2: Drawable? = statusDrawable,
                        applyNavigation: Boolean = false,
                        navigationDark: Boolean = false,
                        navigationDrawable: Drawable? = null,
+                       navigationDrawable2: Drawable? = null,
                        fitsSystemWindows: Boolean = false,
                        lastIndex: Boolean = false) {
         setRootView(activity, fitsSystemWindows)
+        var finalStatusDrawable: Drawable? = statusDrawable
+        var finalNavigationDrawable: Drawable? = navigationDrawable
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
                 val window = activity.window
                 val decorView = window.decorView as ViewGroup
-                var option = when {
-                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && statusDark ->
-                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                    else -> View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                var option = when {
+//                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && statusDark ->
+//                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+//                    else -> View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                }
+                var option = 0
+                when {
+                    statusDark -> {
+                        when {
+                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ->
+                                option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                            else -> {
+                                option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                finalStatusDrawable = statusDrawable2
+                            }
+                        }
+                    }
+                    else -> option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 }
                 window.statusBarColor = Color.TRANSPARENT
-                setStatusBarView(activity, decorView, lastIndex, statusDrawable)
+                setStatusBarView(activity, decorView, lastIndex, finalStatusDrawable)
                 when {
                     applyNavigation && navigationBarExist(activity) -> {
                         option = option or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                        when {
+//                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && navigationDark ->
+//                                option = option or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+//                        }
                         when {
-                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && navigationDark ->
-                                option = option or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                            navigationDark -> {
+                                when {
+                                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ->
+                                        option = option or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                                    else -> finalNavigationDrawable = statusDrawable2
+                                }
+                            }
                         }
                         window.navigationBarColor = Color.TRANSPARENT
-                        setNavigationBarView(activity, decorView, lastIndex, navigationDrawable)
+                        setNavigationBarView(activity, decorView, lastIndex, finalNavigationDrawable)
                     }
                     else -> {
                         window.navigationBarColor = Color.BLACK
-//                        setNavigationBarView(activity, decorView, lastIndex, null)
                         removeNavigationBarView(decorView)
                     }
                 }
@@ -175,20 +223,20 @@ object UltimateBarUtils {
                     window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
                 }
                 val decorView = window.decorView as ViewGroup
-                while (decorView.childCount < 2) decorView.addView(View(activity))
-                setStatusBarView(activity, decorView, lastIndex, statusDrawable)
+                when { statusDark -> finalStatusDrawable = statusDrawable2 }
+                setStatusBarView(activity, decorView, lastIndex, finalStatusDrawable)
                 when {
                     applyNavigation && navigationBarExist(activity) -> {
                         if (winParams.flags and WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION == 0) {
                             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
                         }
-                        setNavigationBarView(activity, decorView, lastIndex, navigationDrawable)
+                        when { navigationDark -> finalNavigationDrawable = navigationDrawable2 }
+                        setNavigationBarView(activity, decorView, lastIndex, finalNavigationDrawable)
                     }
                     else -> {
                         if (winParams.flags and WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION != 0) {
                             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
                         }
-//                        setNavigationBarView(activity, decorView, lastIndex, null)
                         removeNavigationBarView(decorView)
                     }
                 }
@@ -282,7 +330,7 @@ object UltimateBarUtils {
     }
 
 
-    private fun createStatusBarView(context: Context, background: Drawable?): View {
+    fun createStatusBarView(context: Context, background: Drawable?): View {
         val statusBarView = View(context)
         val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, getStatusBarHeight(context))
         params.gravity = Gravity.TOP
@@ -292,7 +340,7 @@ object UltimateBarUtils {
     }
 
 
-    private fun createNavigationBarView(context: Context, background: Drawable?): View {
+    fun createNavigationBarView(context: Context, background: Drawable?): View {
         val navBarView = View(context)
         val params = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, getNavigationBarHeight(context))
         params.gravity = Gravity.BOTTOM

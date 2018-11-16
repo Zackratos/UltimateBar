@@ -11,7 +11,8 @@
 5.针对 DrawerLayout 做了专门的适配；<br/>
 6.KITKAT(Android 4.4) 和 LOLLIPOP(Android 5.0) 上显示效果高度统一；<br/>
 7.状态栏和导航栏可以设置灰色模式;<br/>
-8.同一种效果可以多次设置。<br/>
+8.同一种效果可以多次设置，<br/>
+9.设置灰色模式时可以在低版本上重设置状态栏和导航栏颜色。<br/>
 
 ## 使用方法：
 
@@ -29,9 +30,11 @@ implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.0.1'
 UltimateBar.Companion.with(this)
         .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
         .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .statusDrawable2(drawable2)         // Android 6.0 以下状态栏灰色模式时状态栏颜色
         .applyNavigation(true)              // 应用到导航栏，默认 flase
         .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
         .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .navigationDrawable2(drawable2)     // Android 8.0 以下导航栏灰色模式时导航栏颜色
         .create()
         .drawableBar();
 ```
@@ -56,9 +59,11 @@ UltimateBar.Companion.with(this)
 UltimateBar.Companion.with(this)
         .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
         .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .statusDrawable2(drawable2)         // Android 6.0 以下状态栏灰色模式时状态栏颜色
         .applyNavigation(true)              // 应用到导航栏，默认 flase
         .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
         .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .navigationDrawable2(drawable2)     // Android 8.0 以下导航栏灰色模式时导航栏颜色
         .create()
         .transparentBar();
 ```
@@ -79,8 +84,10 @@ UltimateBar.Companion.with(this)
 ```java
 UltimateBar.Companion.with(this)
         .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+        .statusDrawable2(drawable2)         // Android 6.0 以下状态栏灰色模式时状态栏颜色
         .applyNavigation(true)              // 应用到导航栏，默认 flase
         .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
+        .navigationDrawable2(drawable2)     // Android 8.0 以下导航栏灰色模式时导航栏颜色
         .create()
         .immersionBar();
 ```
@@ -125,9 +132,11 @@ public void onWindowFocusChanged(boolean hasFocus) {
 UltimateBar.Companion.with(this)
         .statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
         .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .statusDrawable2(drawable2)         // Android 6.0 以下状态栏灰色模式时状态栏颜色
         .applyNavigation(true)              // 应用到导航栏，默认 flase
         .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
         .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .navigationDrawable2(drawable2)      // Android 8.0 以下导航栏灰色模式时导航栏颜色
         .create()
         .drawableBarDrawer(drawerLayout,    // DrawerLayout
                 content,                    // DrawerLayout 的主布局 View
@@ -151,13 +160,15 @@ UltimateBar.Companion.with(this)
 ### 7. kotlin 中的使用
 若你的 Activity 是 kotlin 语言，可以直接调用 with() 方法生成 UltimateBar 对象，然后配置参数
 ```kotlin
-ultimateBarBuilder().statusDark(false)                  // 状态栏灰色模式(Android 6.0+)，默认 flase
+ultimateBarBuilder().statusDark(false)      // 状态栏灰色模式(Android 6.0+)，默认 flase
         .statusDrawable(drawable)           // 状态栏背景，默认 null
+        .statusDrawable2(drawable2)         // Android 6.0 以下状态栏灰色模式时状态栏颜色
         .applyNavigation(true)              // 应用到导航栏，默认 flase
         .navigationDark(false)              // 导航栏灰色模式(Android 8.0+)，默认 false
         .navigationDrawable(drawable)       // 导航栏背景，默认 null
+        .navigationDrawable2(drawable2)     // Android 8.0 以下导航栏灰色模式时导航栏颜色
         .create()
-        .drawableBar();
+        .drawableBar()
 ```
 
 <br/><br/><br/>
@@ -167,6 +178,10 @@ ultimateBarBuilder().statusDark(false)                  // 状态栏灰色模式
 
 
 ## 更新日志
+
+### v3.1.0 (2018.11.16)
+1.设置灰色模式时，若 Android 版本不支持灰色模式，可以重新设置状态栏和导航栏的颜色，避免
+白色状态栏或者导航栏遮挡了图标和文字的尴尬。
 
 ### v3.0.1 (2018.11.14)
 1.将 kotlin 中对 Activity 扩展的方法重命名为 ultimateBarBuilder；<br/>

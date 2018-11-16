@@ -1,5 +1,7 @@
 package com.github.zackratos.ultimatebar.sample
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.support.annotation.DrawableRes
 import android.support.v4.content.ContextCompat
@@ -40,6 +42,7 @@ class FragmentActivity: AppCompatActivity() {
         fragment_2.setOnClickListener {
             ultimateBarBuilder().applyNavigation(false)
                     .statusDark(true)
+                    .statusDrawable2(ColorDrawable(Color.parseColor("#33000000")))
                     .create()
                     .immersionBar()
             replaceFragment(R.drawable.yurisa_2)

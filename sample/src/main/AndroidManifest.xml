@@ -31,6 +31,8 @@
         <activity android:name=".DrawerActivity"
             android:label="DrawerDrawableBar"/>
         <activity android:name=".FragmentActivity" />
+        <activity android:name=".SlideActivity"
+            android:label="slide"/>
     </application>
 
 </manifest>

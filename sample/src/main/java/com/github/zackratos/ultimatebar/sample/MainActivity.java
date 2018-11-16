@@ -17,7 +17,7 @@ import com.github.zackratos.ultimatebar.UltimateBar;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button colorBar, immersionBar, transparentBar1,
-            transparentBar2, hideBar1, hideBar2, drawerColorBar, multipleSet;
+            transparentBar2, hideBar1, hideBar2, drawerColorBar, fragment, slide;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hideBar1 = (Button) findViewById(R.id.hide_bar_1);
         hideBar2 = (Button) findViewById(R.id.hide_bar_2);
         drawerColorBar = (Button) findViewById(R.id.drawer_color_bar);
-        multipleSet = findViewById(R.id.fragment);
+        fragment = findViewById(R.id.fragment);
+        slide = findViewById(R.id.slide);
 
         colorBar.setOnClickListener(this);
         immersionBar.setOnClickListener(this);
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hideBar1.setOnClickListener(this);
         hideBar2.setOnClickListener(this);
         drawerColorBar.setOnClickListener(this);
-        multipleSet.setOnClickListener(this);
+        fragment.setOnClickListener(this);
+        slide.setOnClickListener(this);
     }
 
     @Override
@@ -92,6 +94,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.fragment:
                 startActivity(new Intent(this, FragmentActivity.class));
+                break;
+            case R.id.slide:
+                startActivity(new Intent(this, SlideActivity.class));
                 break;
             default:
                 break;

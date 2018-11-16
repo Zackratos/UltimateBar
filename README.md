@@ -19,7 +19,7 @@
 gradle：
 
 ```xml
-implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.0.1'
+implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.1.0'
 ```
 
 ### 1. 自定义状态栏和导航栏的 drawable

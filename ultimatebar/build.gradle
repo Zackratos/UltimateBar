@@ -19,8 +19,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 27
-        versionCode 11
-        versionName "3.1.0"
+        versionCode 12
+        versionName "3.1.1"
     }
     buildTypes {
         release {
@@ -43,7 +43,7 @@ publish {
     userOrg = 'zackratos'//bintray.com用户名
     groupId = 'com.github.zackratos.ultimatebar'//jcenter上的路径
     artifactId = 'ultimatebar3'//项目名称
-    publishVersion = '3.1.0'//版本号
+    publishVersion = '3.1.1'//版本号
     desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
     website = 'https://github.com/Zackratos/UltimateBar'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }

@@ -18,8 +18,8 @@
 
 gradle：
 
-```xml
-implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.1.0'
+```groovy
+implementation 'com.github.zackratos.ultimatebar:ultimatebar3:3.1.1'
 ```
 
 ### 1. 自定义状态栏和导航栏的 drawable
@@ -178,6 +178,10 @@ ultimateBarBuilder().statusDark(false)      // 状态栏灰色模式(Android 6.0
 
 
 ## 更新日志
+
+### v3.1.1 (2018.11.19)
+1.优化添加 StatusBarView 和 NavigationBarView 的流程；<br/>
+2.移除无用的 @TargetApi 注解。
 
 ### v3.1.0 (2018.11.16)
 1.设置灰色模式时，若 Android 版本不支持灰色模式，可以重新设置状态栏和导航栏的颜色，避免

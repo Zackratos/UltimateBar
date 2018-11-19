@@ -23,6 +23,9 @@ import android.widget.FrameLayout
  */
 object UltimateBarUtils {
 
+    private const val TAG_STATUS_BAR = "status_bar"
+    private const val TAG_NAVIGATION_BAR = "navigation_bar"
+
     /**
      * 给状态栏和导航栏设置背景
      * @param statusDark 状态栏灰色模式
@@ -33,7 +36,6 @@ object UltimateBarUtils {
      * @param navigationDrawable 导航栏背景
      * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarDrawable(activity: Activity,
                                 statusDark: Boolean = false,
                                 statusDrawable: Drawable? = null,
@@ -56,7 +58,6 @@ object UltimateBarUtils {
      * @param navigationDrawable 导航栏背景
      * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarTransparent(activity: Activity,
                                    statusDark: Boolean = false,
                                    statusDrawable: Drawable? = null,
@@ -77,7 +78,6 @@ object UltimateBarUtils {
      * @param navigationDark 导航栏灰色模式
      * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarImmersion(activity: Activity,
                                  statusDark: Boolean = false,
                                  statusDrawable2: Drawable? = null,
@@ -92,7 +92,6 @@ object UltimateBarUtils {
      * 隐藏状态栏和导航栏
      * @param applyNavigation 是否应用到导航栏
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarHide(activity: Activity, applyNavigation: Boolean = false) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             val decorView = activity.window.decorView
@@ -120,7 +119,6 @@ object UltimateBarUtils {
      * @param navigationDrawable 导航栏背景
      * @param navigationDrawable2 Android 8.0 以下导航栏灰色模式时导航栏背景
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     internal fun setBarDrawableDrawer(activity: Activity,
                                       drawerLayout: DrawerLayout,
                                       content: View,
@@ -151,7 +149,6 @@ object UltimateBarUtils {
      * @param fitsSystemWindows 跟布局是否设置 fitsSystemWindows
      * @param lastIndex 状态栏和导航栏 view 是否加在 decorView 的最后位置
      */
-    @TargetApi(Build.VERSION_CODES.KITKAT)
     private fun setBar(activity: Activity,
                        statusDark: Boolean = false,
                        statusDrawable: Drawable? = null,
@@ -162,41 +159,32 @@ object UltimateBarUtils {
                        navigationDrawable2: Drawable? = null,
                        fitsSystemWindows: Boolean = false,
                        lastIndex: Boolean = false) {
+        when { Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT -> return }
         setRootView(activity, fitsSystemWindows)
         var finalStatusDrawable: Drawable? = statusDrawable
         var finalNavigationDrawable: Drawable? = navigationDrawable
+        val window = activity.window
+        val decorView = window.decorView as ViewGroup
         when {
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
-                val window = activity.window
-                val decorView = window.decorView as ViewGroup
-//                var option = when {
-//                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && statusDark ->
-//                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-//                    else -> View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                }
-                var option = 0
-                when {
+                var option = when {
                     statusDark -> {
                         when {
                             Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ->
-                                option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                             else -> {
-                                option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                                 finalStatusDrawable = statusDrawable2
+                                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                             }
                         }
                     }
-                    else -> option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    else -> View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                 }
                 window.statusBarColor = Color.TRANSPARENT
                 setStatusBarView(activity, decorView, lastIndex, finalStatusDrawable)
                 when {
                     applyNavigation && navigationBarExist(activity) -> {
                         option = option or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                        when {
-//                            Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && navigationDark ->
-//                                option = option or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
-//                        }
                         when {
                             navigationDark -> {
                                 when {
@@ -217,12 +205,10 @@ object UltimateBarUtils {
                 decorView.systemUiVisibility = option
             }
             Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT -> {
-                val window = activity.window
                 val winParams = window.attributes
                 if (winParams.flags and WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS == 0) {
                     window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
                 }
-                val decorView = window.decorView as ViewGroup
                 when { statusDark -> finalStatusDrawable = statusDrawable2 }
                 setStatusBarView(activity, decorView, lastIndex, finalStatusDrawable)
                 when {
@@ -284,48 +270,177 @@ object UltimateBarUtils {
     }
 
 
+//    private fun setStatusBarView(context: Context, decorView: ViewGroup, lastIndex: Boolean, background: Drawable?) {
+//        var statusBarView: View? = decorView.findViewWithTag("status_bar")
+//        if (statusBarView == null) {
+//            statusBarView = createStatusBarView(context, background)
+//            statusBarView.tag = "status_bar"
+//            if (lastIndex) decorView.addView(statusBarView)
+//            else {
+//                val navigationBarView: View? = decorView.findViewWithTag("navigation_bar")
+//                val index = when (navigationBarView) {
+//                    null -> 0
+//                    else -> 1
+//                }
+//                decorView.addView(statusBarView, index)
+//            }
+//
+//        } else {
+//            statusBarView.setBackgroundDrawable(background)
+//
+//        }
+//    }
+
     private fun setStatusBarView(context: Context, decorView: ViewGroup, lastIndex: Boolean, background: Drawable?) {
-        var statusBarView: View? = decorView.findViewWithTag("status_bar")
+        var statusBarView: View? = decorView.findViewWithTag(TAG_STATUS_BAR)
+        val navigationBarView: View? = decorView.findViewWithTag(TAG_NAVIGATION_BAR)
         if (statusBarView == null) {
             statusBarView = createStatusBarView(context, background)
-            statusBarView.tag = "status_bar"
+            statusBarView.tag = TAG_STATUS_BAR
             if (lastIndex) decorView.addView(statusBarView)
             else {
-                val navigationBarView: View? = decorView.findViewWithTag("navigation_bar")
-                val index = when (navigationBarView) {
-                    null -> 0
-                    else -> 1
+                val index = when (decorView.getChildAt(0)) {
+                    navigationBarView -> 1
+                    else -> 0
                 }
                 decorView.addView(statusBarView, index)
             }
-
         } else {
-            statusBarView.setBackgroundDrawable(background)
-
+            val index = decorView.indexOfChild(statusBarView)
+            val count = decorView.childCount
+            if (lastIndex) {
+                when (index) {
+                    // 最后一个
+                    count - 1 -> {
+                        statusBarView.setBackgroundDrawable(background)
+                    }
+                    // 倒数第二个
+                    count - 2 -> {
+                        when (decorView.getChildAt(count - 1)) {
+                            navigationBarView -> statusBarView.setBackgroundDrawable(background)
+                            else -> {
+                                decorView.removeView(statusBarView)
+                                setStatusBarView(context, decorView, true, background)
+                            }
+                        }
+                    }
+                    else -> {
+                        decorView.removeView(statusBarView)
+                        setStatusBarView(context, decorView, true, background)
+                    }
+                }
+            } else {
+                when (index) {
+                    // 第一个
+                    0 -> {
+                        statusBarView.setBackgroundDrawable(background)
+                    }
+                    // 第二个
+                    1 -> {
+                        when (decorView.getChildAt(0)) {
+                            navigationBarView -> statusBarView.setBackgroundDrawable(background)
+                            else -> {
+                                decorView.removeView(statusBarView)
+                                setStatusBarView(context, decorView, false, background)
+                            }
+                        }
+                    }
+                    else -> {
+                        decorView.removeView(statusBarView)
+                        setStatusBarView(context, decorView, false, background)
+                    }
+                }
+            }
         }
     }
 
+
+//    private fun setNavigationBarView(context: Context, decorView: ViewGroup, lastIndex: Boolean, background: Drawable?) {
+//        var navigationBarView: View? = decorView.findViewWithTag("navigation_bar")
+//        if (navigationBarView == null) {
+//            navigationBarView = createNavigationBarView(context, background)
+//            navigationBarView.tag = "navigation_bar"
+//            if (lastIndex) decorView.addView(navigationBarView)
+//            else {
+//                val statusBarView: View? = decorView.findViewWithTag("status_bar")
+//                val index = when (statusBarView) {
+//                    null -> 0
+//                    else -> 1
+//                }
+//                decorView.addView(navigationBarView, index)
+//            }
+//        } else {
+//            navigationBarView.setBackgroundDrawable(background)
+//        }
+//    }
+
     private fun setNavigationBarView(context: Context, decorView: ViewGroup, lastIndex: Boolean, background: Drawable?) {
-        var navigationBarView: View? = decorView.findViewWithTag("navigation_bar")
+        var navigationBarView: View? = decorView.findViewWithTag(TAG_NAVIGATION_BAR)
+        val statusBarView: View? = decorView.findViewWithTag(TAG_STATUS_BAR)
         if (navigationBarView == null) {
             navigationBarView = createNavigationBarView(context, background)
-            navigationBarView.tag = "navigation_bar"
+            navigationBarView.tag = TAG_NAVIGATION_BAR
             if (lastIndex) decorView.addView(navigationBarView)
             else {
-                val statusBarView: View? = decorView.findViewWithTag("status_bar")
-                val index = when (statusBarView) {
-                    null -> 0
-                    else -> 1
+                val index = when (decorView.getChildAt(0)) {
+                    statusBarView -> 1
+                    else -> 0
                 }
                 decorView.addView(navigationBarView, index)
             }
         } else {
-            navigationBarView.setBackgroundDrawable(background)
+            val index = decorView.indexOfChild(navigationBarView)
+            val count = decorView.childCount
+            if (lastIndex) {
+                when (index) {
+                    // 最后一个
+                    count - 1 -> {
+                        navigationBarView.setBackgroundDrawable(background)
+                    }
+                    // 倒数第二个
+                    count - 2 -> {
+                        when (decorView.getChildAt(count - 1)) {
+                            statusBarView -> navigationBarView.setBackgroundDrawable(background)
+                            else -> {
+                                decorView.removeView(navigationBarView)
+                                setNavigationBarView(context, decorView, true, background)
+                            }
+                        }
+                    }
+                    else -> {
+                        decorView.removeView(navigationBarView)
+                        setNavigationBarView(context, decorView, true, background)
+                    }
+                }
+            } else {
+                when (index) {
+                    // 第一个
+                    0 -> {
+                        navigationBarView.setBackgroundDrawable(background)
+                    }
+                    // 第二个
+                    1 -> {
+                        when (decorView.getChildAt(0)) {
+                            statusBarView -> navigationBarView.setBackgroundDrawable(background)
+                            else -> {
+                                decorView.removeView(navigationBarView)
+                                setNavigationBarView(context, decorView, false, background)
+                            }
+                        }
+                    }
+                    else -> {
+                        decorView.removeView(navigationBarView)
+                        setNavigationBarView(context, decorView, false, background)
+                    }
+                }
+            }
         }
     }
 
+
+
     private fun removeNavigationBarView(decorView: ViewGroup) {
-        val navigationBarView: View? = decorView.findViewWithTag("navigation_bar")
+        val navigationBarView: View? = decorView.findViewWithTag(TAG_NAVIGATION_BAR)
         if (navigationBarView != null) decorView.removeView(navigationBarView)
     }
 
@@ -350,12 +465,12 @@ object UltimateBarUtils {
     }
 
     private fun setRootView(activity: Activity, fit: Boolean) {
-        val root: FrameLayout = activity.findViewById(android.R.id.content)
-        val content = root.getChildAt(0)
-        setRootView(content, fit)
+        val content: FrameLayout = activity.findViewById(android.R.id.content)
+        val root: View? = content.getChildAt(0)
+        setRootView(root, fit)
     }
 
-    private fun setRootView(view: View, fit: Boolean) {
+    private fun setRootView(view: View?, fit: Boolean) {
         if (view is ViewGroup) {
             view.fitsSystemWindows = fit
             view.clipToPadding = fit
@@ -410,5 +525,4 @@ object UltimateBarUtils {
             e.printStackTrace()
         }
     }
-
 }
